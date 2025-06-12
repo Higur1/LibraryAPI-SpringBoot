@@ -1,0 +1,73 @@
+package io.github.spring.libraryapi.common;
+
+import io.github.spring.libraryapi.exceptions.DuplicateRecordException;
+import io.github.spring.libraryapi.exceptions.InvalidFieldException;
+import io.github.spring.libraryapi.exceptions.OperationNotAllowedException;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@RestControllerAdvice //capture exceptions and return Rest response
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY) // no need to use response entity to send status error
+    public ResponseError handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+
+        List<FieldError> fieldErrors = e.getFieldErrors();
+
+        List<CustomFieldError> listCustomFieldErrors =
+                fieldErrors
+                        .stream()
+                        .map(fieldError -> new CustomFieldError(
+                                fieldError.getField(),
+                                fieldError.getDefaultMessage()))
+                        .collect(
+                                Collectors.toList());
+
+        return new ResponseError(
+                HttpStatus.UNPROCESSABLE_ENTITY.value(),
+                "Validation error",
+                listCustomFieldErrors);
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public CustomFieldError handlerMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
+        return new CustomFieldError(e.getName(), "Invalid UUID");
+    }
+
+    @ExceptionHandler(DuplicateRecordException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseError handleDuplicateRecordException(DuplicateRecordException e){
+        return ResponseError.conflict(e.getMessage());
+    }
+
+    @ExceptionHandler(OperationNotAllowedException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseError handleOperationNotAllowedException(OperationNotAllowedException e){
+        return ResponseError.genericResponse(e.getMessage());
+    }
+
+    @ExceptionHandler(InvalidFieldException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public ResponseError handleInvalidFieldException(InvalidFieldException e){
+        return new ResponseError(HttpStatus.UNPROCESSABLE_ENTITY.value(), "Validation error", List.of(new CustomFieldError(e.getField(), e.getMessage())));
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseError handleDefaultError(RuntimeException e){
+        return new ResponseError(HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                "An unexpected error occurred. Please contact the system administrator.",
+                List.of());
+    }
+}
