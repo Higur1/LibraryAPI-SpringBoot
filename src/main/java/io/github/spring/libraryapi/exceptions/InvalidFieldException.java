@@ -4,10 +4,10 @@ import lombok.Getter;
 
 public class InvalidFieldException extends RuntimeException{
     @Getter
-    private String field;
+    private String errorField;
 
     public InvalidFieldException(String field, String message){
         super(message);
-        this.field = field;
+        this.errorField = field;
     }
 }

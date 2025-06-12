@@ -29,9 +29,9 @@ public class AuthorService {
         this.bookRepository = bookRepository;
     }*/
 
-    public Author save(Author author) {
+    public void save(Author author) {
         validator.validate(author);
-        return repository.save(author);
+        repository.save(author);
     }
 
     public Optional<Author> findByUUID(UUID id) {

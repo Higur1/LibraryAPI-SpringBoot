@@ -90,11 +90,11 @@ public class AuthorRepositoryTest {
 
     @Test
     void listBooksByAuthor(){
-        var id = UUID.fromString("c073af6e-407c-43ad-8565-bbfccb456d48");
-        var author = authorRepository.findById(id).get();
+        UUID uuid = UUID.fromString("2f5e6112-dbc9-46ee-9975-2bc7ce1c95c8");
+        Author author = authorRepository.findById(uuid).get();
 
-        List<Book> BookList = bookRepository.findByAuthor(author);
+        List<Book> byAuthor = bookRepository.findByAuthor(author);
 
-        author.getBooks().forEach(System.out::println);
+        byAuthor.forEach(System.out::println);
     }
 }

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,25 +46,25 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(DuplicateRecordException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public ResponseError handleDuplicateRecordException(DuplicateRecordException e){
+    public ResponseError handleDuplicateRecordException(DuplicateRecordException e) {
         return ResponseError.conflict(e.getMessage());
     }
 
     @ExceptionHandler(OperationNotAllowedException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseError handleOperationNotAllowedException(OperationNotAllowedException e){
+    public ResponseError handleOperationNotAllowedException(OperationNotAllowedException e) {
         return ResponseError.genericResponse(e.getMessage());
     }
 
     @ExceptionHandler(InvalidFieldException.class)
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-    public ResponseError handleInvalidFieldException(InvalidFieldException e){
-        return new ResponseError(HttpStatus.UNPROCESSABLE_ENTITY.value(), "Validation error", List.of(new CustomFieldError(e.getField(), e.getMessage())));
+    public ResponseError handleInvalidFieldException(InvalidFieldException e) {
+        return new ResponseError(HttpStatus.UNPROCESSABLE_ENTITY.value(), "Validation error", List.of(new CustomFieldError(e.getErrorField(), e.getMessage())));
     }
 
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseError handleDefaultError(RuntimeException e){
+    public ResponseError handleDefaultError(RuntimeException e) {
         return new ResponseError(HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 "An unexpected error occurred. Please contact the system administrator.",
                 List.of());

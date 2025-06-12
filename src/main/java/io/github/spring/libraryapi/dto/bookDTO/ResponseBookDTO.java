@@ -1,7 +1,6 @@
 package io.github.spring.libraryapi.dto.bookDTO;
 
 import io.github.spring.libraryapi.dto.authorDTO.ResponseAuthorDTO;
-import io.github.spring.libraryapi.model.Author;
 import io.github.spring.libraryapi.model.Genre;
 
 import java.math.BigDecimal;

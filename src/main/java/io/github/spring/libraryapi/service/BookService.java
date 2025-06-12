@@ -22,9 +22,9 @@ public class BookService {
     private final BookRepository repository;
     private final BookValidator validator;
 
-    public Book save(Book book) {
+    public void save(Book book) {
         validator.validate(book);
-        return repository.save(book);
+        repository.save(book);
     }
 
     public Optional<Book> findByUUID(UUID id) {
