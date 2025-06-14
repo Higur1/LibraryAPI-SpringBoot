@@ -31,6 +31,7 @@ public class SecurityConfiguration {
                 {
 
                     authorize.requestMatchers("/authors/**").hasRole("ADMIN");
+                    authorize.requestMatchers(HttpMethod.POST, "/authUsers").permitAll();
                     //authorize.requestMatchers(HttpMethod.POST, "/authors").hasRole("ADMIN");
                     authorize.requestMatchers("/books/**").hasAnyRole("USER", "ADMIN");
                     authorize.anyRequest().authenticated();
