@@ -14,5 +14,7 @@ public record ResponseBookDTO(
         LocalDate releaseDate,
         Genre genre,
         BigDecimal price,
-        ResponseAuthorDTO author) {
+        ResponseAuthorDTO author,
+        String authUsername
+) {
 }

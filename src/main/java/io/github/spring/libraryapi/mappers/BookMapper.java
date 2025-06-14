@@ -14,9 +14,9 @@ public abstract class BookMapper {
     @Autowired
     AuthorRepository authorRepository;
 
-    @Mapping(target = "author", expression = "java( authorRepository.findById(requestBookDTO.authorId()).orElse(null))")
-    public abstract  Book toEntity(RequestBookDTO requestBookDTO);
+    @Mapping(target = "author", expression = "java(authorRepository.findById(requestBookDTO.authorId()).orElse(null))")
+    public abstract Book toEntity(RequestBookDTO requestBookDTO);
 
-    @Mapping(target = "author", source = "author")
+    @Mapping(target = "authUsername", expression = "java(book.getAuthUser().getLogin())")
     public abstract ResponseBookDTO toResponseBookDTO(Book book);
 }
