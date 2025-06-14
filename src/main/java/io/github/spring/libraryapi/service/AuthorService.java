@@ -21,6 +21,7 @@ public class AuthorService {
     private final AuthorRepository repository;
     private final AuthorValidator validator;
     private final BookRepository bookRepository;
+    private final SecurityService securityService;
 
     //@RequiredArgsConstructor
     /*public AuthorService(AuthorRepository repository,  AuthorValidator validator, BookRepository bookRepository){
@@ -31,6 +32,9 @@ public class AuthorService {
 
     public void save(Author author) {
         validator.validate(author);
+
+        author.setAuthUser(securityService.getUserLogged());
+
         repository.save(author);
     }
 

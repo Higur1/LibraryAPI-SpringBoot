@@ -3,12 +3,18 @@ package io.github.spring.libraryapi.controller;
 import io.github.spring.libraryapi.dto.authorDTO.RequestAuthorDTO;
 import io.github.spring.libraryapi.dto.authorDTO.ResponseAuthorDTO;
 import io.github.spring.libraryapi.mappers.AuthorMapper;
+import io.github.spring.libraryapi.model.AuthUser;
 import io.github.spring.libraryapi.model.Author;
+import io.github.spring.libraryapi.service.AuthUserService;
 import io.github.spring.libraryapi.service.AuthorService;
+import io.github.spring.libraryapi.service.SecurityService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +33,13 @@ public class AuthorController extends GenericController {
     @PreAuthorize("hasRole('MANAGER')")
     public ResponseEntity<Void> save(@RequestBody @Valid RequestAuthorDTO dto) {
 
+        /*UserDetails userLogged = (UserDetails) authentication.getPrincipal();
+        AuthUser authUser = authUserService.getByLogin(userLogged.getUsername());
         Author author = mapper.toEntity(dto);
+        author.setUser_id(authUser.getId());*/
+
+        Author author = mapper.toEntity(dto);
+
         service.save(author);
 
         return ResponseEntity.created(generateHeaderLocation(author.getId())).build();
@@ -63,7 +75,7 @@ public class AuthorController extends GenericController {
         return service.findByUUID(id).map(author -> {
             service.delete(author);
             return ResponseEntity.noContent().build();
-        }).orElseGet(() ->  ResponseEntity.notFound().build());
+        }).orElseGet(() -> ResponseEntity.notFound().build());
 
             /*UUID uuid = UUID.fromString(id);
             Optional<Author> resultAuthor = service.authorDetailById(uuidAuthor);

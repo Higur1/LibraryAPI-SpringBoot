@@ -21,9 +21,13 @@ import static io.github.spring.libraryapi.specs.BookSpecification.*;
 public class BookService {
     private final BookRepository repository;
     private final BookValidator validator;
+    private final SecurityService securityService;
 
     public void save(Book book) {
         validator.validate(book);
+
+        book.setAuthUser(securityService.getUserLogged());
+
         repository.save(book);
     }
 
