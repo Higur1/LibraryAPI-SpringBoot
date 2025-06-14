@@ -8,6 +8,7 @@ import io.github.spring.libraryapi.service.AuthorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class AuthorController extends GenericController {
     private final AuthorMapper mapper;
 
     @PostMapping
+    @PreAuthorize("hasRole('MANAGER')")
     public ResponseEntity<Void> save(@RequestBody @Valid RequestAuthorDTO dto) {
 
         Author author = mapper.toEntity(dto);
@@ -32,6 +34,7 @@ public class AuthorController extends GenericController {
     }
 
     @GetMapping("{id}")
+    @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
     public ResponseEntity<ResponseAuthorDTO> find(@PathVariable("id") UUID id) {
 
         return service.findByUUID(id).map(author -> {
@@ -55,6 +58,7 @@ public class AuthorController extends GenericController {
 
 
     @DeleteMapping("{id}")
+    @PreAuthorize("hasRole('MANAGER')")
     public ResponseEntity<?> delete(@PathVariable("id") UUID id) {
         return service.findByUUID(id).map(author -> {
             service.delete(author);
@@ -74,6 +78,7 @@ public class AuthorController extends GenericController {
     }
 
     @GetMapping()
+    @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
     public ResponseEntity<List<ResponseAuthorDTO>> search(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "nationality", required = false) String nationality) {
         return ResponseEntity
                 .ok(service.search(name, nationality)
@@ -83,6 +88,7 @@ public class AuthorController extends GenericController {
     }
 
     @PutMapping("{id}")
+    @PreAuthorize("hasRole('MANAGER')")
     public ResponseEntity<?> update(@PathVariable(value = "id") UUID id, @RequestBody @Valid RequestAuthorDTO requestAuthorDTO) {
 
         return service.findByUUID(id).map(author -> {

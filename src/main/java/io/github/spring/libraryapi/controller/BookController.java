@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -22,6 +23,7 @@ public class BookController extends GenericController {
     private final BookMapper mapper;
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
     public ResponseEntity<Void> save(@RequestBody @Valid RequestBookDTO requestBookDTO) {
 
         Book book = mapper.toEntity(requestBookDTO);
@@ -31,6 +33,7 @@ public class BookController extends GenericController {
     }
 
     @GetMapping("{id}")
+    @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
     public ResponseEntity<ResponseBookDTO> find(@PathVariable("id") @Valid UUID id) {
         return service.findByUUID(id).map(book -> {
             ResponseBookDTO responseBookDTO = mapper.toResponseBookDTO(book);
@@ -39,6 +42,7 @@ public class BookController extends GenericController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
     public ResponseEntity<Page<ResponseBookDTO>> search(
             @RequestParam(value = "isbn", required = false)
             String isbn,
@@ -63,6 +67,7 @@ public class BookController extends GenericController {
 
 
     @PutMapping("{id}")
+    @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
     public ResponseEntity<?> update(@PathVariable("id") UUID id, @RequestBody @Valid RequestBookDTO requestBookDTO) {
 
         return service.findByUUID(id).map(book -> {
@@ -81,6 +86,7 @@ public class BookController extends GenericController {
     }
 
     @DeleteMapping("{id}")
+    @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
     public ResponseEntity<?> delete(@PathVariable("id") UUID id) {
         return service.findByUUID(id).map(book -> {
             service.delete(book);

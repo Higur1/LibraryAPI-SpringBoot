@@ -4,6 +4,7 @@ import io.github.spring.libraryapi.exceptions.DuplicateRecordException;
 import io.github.spring.libraryapi.exceptions.InvalidFieldException;
 import io.github.spring.libraryapi.exceptions.OperationNotAllowedException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -68,5 +69,11 @@ public class GlobalExceptionHandler {
         return new ResponseError(HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 "An unexpected error occurred. Please contact the system administrator.",
                 List.of());
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ResponseError handleAccessDeniedException(AccessDeniedException e){
+        return new ResponseError(HttpStatus.FORBIDDEN.value(), "Access Denied", List.of());
     }
 }
