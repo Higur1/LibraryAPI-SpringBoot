@@ -25,9 +25,10 @@ public class SecurityConfiguration {
 
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
-                .formLogin(httpSecurityFormLoginConfigurer ->
+                /*.formLogin(httpSecurityFormLoginConfigurer ->
                         httpSecurityFormLoginConfigurer.loginPage("/login").permitAll()
-                )
+                )*/
+                .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize ->
                 {
@@ -35,6 +36,7 @@ public class SecurityConfiguration {
                     //authorize.requestMatchers(HttpMethod.POST, "/authors").hasRole("ADMIN");
                     authorize.anyRequest().authenticated();
                 })
+                .oauth2Login(Customizer.withDefaults())
                 .build();
     }
 

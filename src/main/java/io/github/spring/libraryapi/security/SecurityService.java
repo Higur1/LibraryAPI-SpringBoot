@@ -1,10 +1,10 @@
-package io.github.spring.libraryapi.service;
+package io.github.spring.libraryapi.security;
 
 import io.github.spring.libraryapi.model.AuthUser;
+import io.github.spring.libraryapi.service.AuthUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 

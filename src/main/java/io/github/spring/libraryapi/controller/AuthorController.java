@@ -3,18 +3,12 @@ package io.github.spring.libraryapi.controller;
 import io.github.spring.libraryapi.dto.authorDTO.RequestAuthorDTO;
 import io.github.spring.libraryapi.dto.authorDTO.ResponseAuthorDTO;
 import io.github.spring.libraryapi.mappers.AuthorMapper;
-import io.github.spring.libraryapi.model.AuthUser;
 import io.github.spring.libraryapi.model.Author;
-import io.github.spring.libraryapi.service.AuthUserService;
 import io.github.spring.libraryapi.service.AuthorService;
-import io.github.spring.libraryapi.service.SecurityService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

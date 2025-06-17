@@ -3,6 +3,7 @@ package io.github.spring.libraryapi.service;
 import io.github.spring.libraryapi.model.Book;
 import io.github.spring.libraryapi.model.Genre;
 import io.github.spring.libraryapi.repository.BookRepository;
+import io.github.spring.libraryapi.security.SecurityService;
 import io.github.spring.libraryapi.validator.BookValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
