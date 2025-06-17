@@ -28,5 +28,6 @@ CREATE TABLE auth_user(
     id uuid NOT NULL PRIMARY KEY,
     login VARCHAR(20) NOT NULL UNIQUE,
     password VARCHAR(300) NOT NULL,
+    email VARCHAR(150) NOT NULL,
     roles VARCHAR[]
 );
