@@ -3,9 +3,6 @@ package io.github.spring.libraryapi.config;
 import io.github.spring.libraryapi.security.CustomUserDetailsService;
 import io.github.spring.libraryapi.security.SocialLoginSuccessHandler;
 import io.github.spring.libraryapi.service.AuthUserService;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,14 +12,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.core.GrantedAuthorityDefaults;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-
-import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
@@ -34,10 +27,9 @@ public class SecurityConfiguration {
 
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
-                /*.formLogin(httpSecurityFormLoginConfigurer ->
+                .formLogin(httpSecurityFormLoginConfigurer ->
                         httpSecurityFormLoginConfigurer.loginPage("/login").permitAll()
-                )*/
-                .formLogin(Customizer.withDefaults())
+                )
                 .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize ->
                 {
@@ -46,7 +38,9 @@ public class SecurityConfiguration {
                     authorize.anyRequest().authenticated();
                 })
                 .oauth2Login(oauth2 -> {
-                    oauth2.successHandler(socialLoginSuccessHandler);
+                    oauth2
+                            .loginPage("/login")
+                            .successHandler(socialLoginSuccessHandler);
                 })
                 .build();
     }
@@ -76,7 +70,7 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public GrantedAuthorityDefaults grantedAuthorityDefaults(){
+    public GrantedAuthorityDefaults grantedAuthorityDefaults() {
         return new GrantedAuthorityDefaults("");
     }
 }
