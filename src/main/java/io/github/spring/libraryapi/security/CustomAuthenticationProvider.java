@@ -20,18 +20,17 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String login = authentication.getName();
-        String password = authentication.getCredentials().toString();
-
-        AuthUser userByLogin = service.getByLogin(login);
+        AuthUser userByLogin = service.getByLogin(authentication.getName());
 
         if (userByLogin == null) {
             throw getUserNotFound();
         }
 
-        String encryptedPassword = userByLogin.getPassword();
-
-        boolean matcherPassword = encoder.matches(password, encryptedPassword);
+        boolean matcherPassword =
+                encoder.matches(
+                        authentication.getCredentials().toString(),
+                        userByLogin.getPassword()
+                );
 
         if(matcherPassword){
             return new CustomAuthentication(userByLogin);
@@ -39,13 +38,14 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         throw getUserNotFound();
     }
+    private static UsernameNotFoundException getUserNotFound() {
+        return new UsernameNotFoundException("Incorrect username or password");
+    }
 
     @Override
     public boolean supports(Class<?> authentication) {
         return authentication.isAssignableFrom(UsernamePasswordAuthenticationToken.class);
     }
 
-    private static UsernameNotFoundException getUserNotFound() {
-        return new UsernameNotFoundException("Incorrect username or password");
-    }
+
 }
