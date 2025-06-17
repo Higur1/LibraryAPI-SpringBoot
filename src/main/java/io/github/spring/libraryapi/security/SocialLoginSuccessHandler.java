@@ -21,7 +21,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class SocialLoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
-    private static final String DEFAULT_PASSWORD = "LIBRARY";
+    private static final String DEFAULT_PASSWORD = System.getenv("GOOGLE_SECRET_KEY");
     private final AuthUserService service;
 
     @Override
