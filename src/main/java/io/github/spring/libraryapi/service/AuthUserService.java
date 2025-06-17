@@ -23,4 +23,8 @@ public class AuthUserService {
     public AuthUser getByLogin(String login){
         return repository.findByLogin(login);
     }
+
+    public AuthUser getByEmail(String email){
+        return repository.findByEmail(email);
+    }
 }

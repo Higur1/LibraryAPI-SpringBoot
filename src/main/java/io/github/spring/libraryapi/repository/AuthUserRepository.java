@@ -7,4 +7,6 @@ import java.util.UUID;
 
 public interface AuthUserRepository extends JpaRepository<AuthUser, UUID> {
     AuthUser findByLogin(String login);
+
+    AuthUser findByEmail(String email);
 }
