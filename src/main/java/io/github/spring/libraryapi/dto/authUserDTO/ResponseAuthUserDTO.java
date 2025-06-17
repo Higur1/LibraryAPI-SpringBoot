@@ -1,4 +1,4 @@
-package io.github.spring.libraryapi.dto.authUser;
+package io.github.spring.libraryapi.dto.authUserDTO;
 
 import java.util.List;
 import java.util.UUID;

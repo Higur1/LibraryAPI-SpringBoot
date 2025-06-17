@@ -1,7 +1,7 @@
 package io.github.spring.libraryapi.mappers;
 
-import io.github.spring.libraryapi.dto.authUser.RequestAuthUserDTO;
-import io.github.spring.libraryapi.dto.authUser.ResponseAuthUserDTO;
+import io.github.spring.libraryapi.dto.authUserDTO.RequestAuthUserDTO;
+import io.github.spring.libraryapi.dto.authUserDTO.ResponseAuthUserDTO;
 import io.github.spring.libraryapi.model.AuthUser;
 import org.mapstruct.Mapper;
 

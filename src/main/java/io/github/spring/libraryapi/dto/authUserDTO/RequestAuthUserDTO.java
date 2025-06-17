@@ -1,4 +1,4 @@
-package io.github.spring.libraryapi.dto.authUser;
+package io.github.spring.libraryapi.dto.authUserDTO;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

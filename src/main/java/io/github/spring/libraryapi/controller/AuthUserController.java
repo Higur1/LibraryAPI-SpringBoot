@@ -1,6 +1,6 @@
 package io.github.spring.libraryapi.controller;
 
-import io.github.spring.libraryapi.dto.authUser.RequestAuthUserDTO;
+import io.github.spring.libraryapi.dto.authUserDTO.RequestAuthUserDTO;
 import io.github.spring.libraryapi.mappers.AuthUserMapper;
 import io.github.spring.libraryapi.model.AuthUser;
 import io.github.spring.libraryapi.service.AuthUserService;
