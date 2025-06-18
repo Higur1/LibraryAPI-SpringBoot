@@ -1,5 +1,6 @@
 package io.github.spring.libraryapi.config;
 
+import io.github.spring.libraryapi.security.JwtCustomAuthenticationFilter;
 import io.github.spring.libraryapi.security.SocialLoginSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
+import org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -20,7 +22,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class ResourceServerConfiguration {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, SocialLoginSuccessHandler socialLoginSuccessHandler) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, SocialLoginSuccessHandler socialLoginSuccessHandler, JwtCustomAuthenticationFilter jwtCustomAuthenticationFilter) throws Exception {
 
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
@@ -40,6 +42,7 @@ public class ResourceServerConfiguration {
                             .successHandler(socialLoginSuccessHandler);
                 })
                 .oauth2ResourceServer(httpSecurityOAuth2ResourceServerConfigurer ->  httpSecurityOAuth2ResourceServerConfigurer.jwt(Customizer.withDefaults()))
+                .addFilterAfter(jwtCustomAuthenticationFilter, BearerTokenAuthenticationFilter.class)
                 .build();
     }
 
