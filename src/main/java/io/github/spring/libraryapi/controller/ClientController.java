@@ -1,6 +1,6 @@
 package io.github.spring.libraryapi.controller;
 
-import io.github.spring.libraryapi.dto.clientDTO.RequestClientDTO;
+import io.github.spring.libraryapi.dto.clientDTO.ClientRequestDTO;
 import io.github.spring.libraryapi.mappers.ClientMapper;
 import io.github.spring.libraryapi.service.ClientService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class ClientController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody RequestClientDTO requestClientDTO) {
-        service.save(mapper.toEntity(requestClientDTO));
+    public void save(@RequestBody ClientRequestDTO clientRequestDTO) {
+        service.save(mapper.toEntity(clientRequestDTO));
     }
 }

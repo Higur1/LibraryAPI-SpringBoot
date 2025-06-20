@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public record RequestBookDTO(
+public record BookRequestDTO(
         @NotBlank(message = "Required field")
         @ISBN(message = "Invalid ISBN")
         String isbn,

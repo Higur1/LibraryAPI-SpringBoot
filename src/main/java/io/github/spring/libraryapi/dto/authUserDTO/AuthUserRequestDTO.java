@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 
-public record RequestAuthUserDTO(
+public record AuthUserRequestDTO(
         @NotBlank(message = "required field")
         String login,
         @NotBlank(message = "required field")

@@ -1,7 +1,7 @@
 package io.github.spring.libraryapi.mappers;
 
-import io.github.spring.libraryapi.dto.bookDTO.RequestBookDTO;
-import io.github.spring.libraryapi.dto.bookDTO.ResponseBookDTO;
+import io.github.spring.libraryapi.dto.bookDTO.BookRequestDTO;
+import io.github.spring.libraryapi.dto.bookDTO.BookResponseDTO;
 import io.github.spring.libraryapi.model.Book;
 import io.github.spring.libraryapi.repository.AuthorRepository;
 import org.mapstruct.Mapper;
@@ -15,8 +15,8 @@ public abstract class BookMapper {
     AuthorRepository authorRepository;
 
     @Mapping(target = "author", expression = "java(authorRepository.findById(requestBookDTO.authorId()).orElse(null))")
-    public abstract Book toEntity(RequestBookDTO requestBookDTO);
+    public abstract Book toEntity(BookRequestDTO bookRequestDTO);
 
     @Mapping(target = "authUsername", expression = "java(book.getAuthUser().getLogin())")
-    public abstract ResponseBookDTO toResponseBookDTO(Book book);
+    public abstract BookResponseDTO toResponseBookDTO(Book book);
 }

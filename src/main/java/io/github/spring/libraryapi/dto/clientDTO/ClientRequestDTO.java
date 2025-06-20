@@ -2,7 +2,7 @@ package io.github.spring.libraryapi.dto.clientDTO;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record RequestClientDTO(
+public record ClientRequestDTO(
         @NotBlank(message = "required field")
         String clientId,
         @NotBlank(message = "required field")

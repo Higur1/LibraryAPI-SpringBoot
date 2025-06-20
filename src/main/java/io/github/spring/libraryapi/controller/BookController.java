@@ -1,7 +1,7 @@
 package io.github.spring.libraryapi.controller;
 
-import io.github.spring.libraryapi.dto.bookDTO.RequestBookDTO;
-import io.github.spring.libraryapi.dto.bookDTO.ResponseBookDTO;
+import io.github.spring.libraryapi.dto.bookDTO.BookRequestDTO;
+import io.github.spring.libraryapi.dto.bookDTO.BookResponseDTO;
 import io.github.spring.libraryapi.mappers.BookMapper;
 import io.github.spring.libraryapi.model.Book;
 import io.github.spring.libraryapi.model.Genre;
@@ -33,9 +33,9 @@ public class BookController extends GenericController {
             @ApiResponse(responseCode = "422", description = "Validation error."),
             @ApiResponse(responseCode = "409", description = "Book already registered.")
     })
-    public ResponseEntity<Void> save(@RequestBody @Valid RequestBookDTO requestBookDTO) {
+    public ResponseEntity<Void> save(@RequestBody @Valid BookRequestDTO bookRequestDTO) {
 
-        Book book = mapper.toEntity(requestBookDTO);
+        Book book = mapper.toEntity(bookRequestDTO);
         service.save(book);
 
         return ResponseEntity.created(generateHeaderLocation(book.getId())).build();
@@ -48,9 +48,9 @@ public class BookController extends GenericController {
             @ApiResponse(responseCode = "200", description = "Returns the found book."),
             @ApiResponse(responseCode = "404", description = "Book not found.")
     })
-    public ResponseEntity<ResponseBookDTO> find(@PathVariable("id") @Valid UUID id) {
+    public ResponseEntity<BookResponseDTO> find(@PathVariable("id") @Valid UUID id) {
         return service.findByUUID(id).map(book -> {
-            ResponseBookDTO responseBookDTO = mapper.toResponseBookDTO(book);
+            BookResponseDTO responseBookDTO = mapper.toResponseBookDTO(book);
             return ResponseEntity.ok(responseBookDTO);
         }).orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -61,7 +61,7 @@ public class BookController extends GenericController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Returns the found books."),
     })
-    public ResponseEntity<Page<ResponseBookDTO>> search(
+    public ResponseEntity<Page<BookResponseDTO>> search(
             @RequestParam(value = "isbn", required = false)
             String isbn,
             @RequestParam(value = "title", required = false)
@@ -78,7 +78,7 @@ public class BookController extends GenericController {
             Integer pageSize
     ) {
         Page<Book> pageResult = service.search(isbn, title, nameAuthor, genre, releaseDate, page, pageSize);
-        Page<ResponseBookDTO> mapPageResponseBookDTO = pageResult.map(mapper::toResponseBookDTO);
+        Page<BookResponseDTO> mapPageResponseBookDTO = pageResult.map(mapper::toResponseBookDTO);
 
         return ResponseEntity.ok(mapPageResponseBookDTO);
     }
@@ -93,10 +93,10 @@ public class BookController extends GenericController {
             @ApiResponse(responseCode = "409", description = "Book already exists."),
 
     })
-    public ResponseEntity<?> update(@PathVariable("id") UUID id, @RequestBody @Valid RequestBookDTO requestBookDTO) {
+    public ResponseEntity<?> update(@PathVariable("id") UUID id, @RequestBody @Valid BookRequestDTO bookRequestDTO) {
 
         return service.findByUUID(id).map(book -> {
-            Book entityAux = mapper.toEntity(requestBookDTO);
+            Book entityAux = mapper.toEntity(bookRequestDTO);
             book.setReleaseDate(entityAux.getReleaseDate());
             book.setIsbn(entityAux.getIsbn());
             book.setPrice(entityAux.getPrice());

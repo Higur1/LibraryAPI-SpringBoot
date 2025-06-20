@@ -1,6 +1,6 @@
 package io.github.spring.libraryapi.controller;
 
-import io.github.spring.libraryapi.dto.authUserDTO.RequestAuthUserDTO;
+import io.github.spring.libraryapi.dto.authUserDTO.AuthUserRequestDTO;
 import io.github.spring.libraryapi.mappers.AuthUserMapper;
 import io.github.spring.libraryapi.model.AuthUser;
 import io.github.spring.libraryapi.service.AuthUserService;
@@ -19,8 +19,8 @@ public class AuthUserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody @Valid RequestAuthUserDTO requestAuthUserDTO) {
-        AuthUser user = mapper.toEntity(requestAuthUserDTO);
+    public void save(@RequestBody @Valid AuthUserRequestDTO authUserRequestDTO) {
+        AuthUser user = mapper.toEntity(authUserRequestDTO);
         service.save(user);
     }
 }
