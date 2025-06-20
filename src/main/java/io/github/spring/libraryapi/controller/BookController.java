@@ -6,6 +6,9 @@ import io.github.spring.libraryapi.mappers.BookMapper;
 import io.github.spring.libraryapi.model.Book;
 import io.github.spring.libraryapi.model.Genre;
 import io.github.spring.libraryapi.service.BookService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -24,6 +27,12 @@ public class BookController extends GenericController {
 
     @PostMapping
     @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
+    @Operation(summary = "Save", description = "Register new book.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Register successfully."),
+            @ApiResponse(responseCode = "422", description = "Validation error."),
+            @ApiResponse(responseCode = "409", description = "Book already registered.")
+    })
     public ResponseEntity<Void> save(@RequestBody @Valid RequestBookDTO requestBookDTO) {
 
         Book book = mapper.toEntity(requestBookDTO);
@@ -34,6 +43,11 @@ public class BookController extends GenericController {
 
     @GetMapping("{id}")
     @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
+    @Operation(summary = "Find" , description = "Find the book by id.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Returns the found book."),
+            @ApiResponse(responseCode = "404", description = "Book not found.")
+    })
     public ResponseEntity<ResponseBookDTO> find(@PathVariable("id") @Valid UUID id) {
         return service.findByUUID(id).map(book -> {
             ResponseBookDTO responseBookDTO = mapper.toResponseBookDTO(book);
@@ -43,6 +57,10 @@ public class BookController extends GenericController {
 
     @GetMapping
     @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
+    @Operation(summary = "Search" , description = "Search books by parameters.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Returns the found books."),
+    })
     public ResponseEntity<Page<ResponseBookDTO>> search(
             @RequestParam(value = "isbn", required = false)
             String isbn,
@@ -68,6 +86,13 @@ public class BookController extends GenericController {
 
     @PutMapping("{id}")
     @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
+    @Operation(summary = "Update" , description = "Update existing book.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Update successfully."),
+            @ApiResponse(responseCode = "404", description = "Book not found."),
+            @ApiResponse(responseCode = "409", description = "Book already exists."),
+
+    })
     public ResponseEntity<?> update(@PathVariable("id") UUID id, @RequestBody @Valid RequestBookDTO requestBookDTO) {
 
         return service.findByUUID(id).map(book -> {
@@ -87,6 +112,11 @@ public class BookController extends GenericController {
 
     @DeleteMapping("{id}")
     @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
+    @Operation(summary = "Delete" , description = "Deletes an existing book.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Delete successfully."),
+            @ApiResponse(responseCode = "404", description = "Book not found.")
+    })
     public ResponseEntity<?> delete(@PathVariable("id") UUID id) {
         return service.findByUUID(id).map(book -> {
             service.delete(book);

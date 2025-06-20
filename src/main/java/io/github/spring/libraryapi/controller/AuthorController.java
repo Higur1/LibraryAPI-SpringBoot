@@ -1,10 +1,14 @@
 package io.github.spring.libraryapi.controller;
 
-import io.github.spring.libraryapi.dto.authorDTO.RequestAuthorDTO;
-import io.github.spring.libraryapi.dto.authorDTO.ResponseAuthorDTO;
+import io.github.spring.libraryapi.dto.authorDTO.AuthorRequestDTO;
+import io.github.spring.libraryapi.dto.authorDTO.AuthorResponseDTO;
 import io.github.spring.libraryapi.mappers.AuthorMapper;
 import io.github.spring.libraryapi.model.Author;
 import io.github.spring.libraryapi.service.AuthorService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +22,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/authors")
+@Tag(name = "Authors")
 public class AuthorController extends GenericController {
 
     private final AuthorService service;
@@ -25,7 +30,13 @@ public class AuthorController extends GenericController {
 
     @PostMapping
     @PreAuthorize("hasRole('MANAGER')")
-    public ResponseEntity<Void> save(@RequestBody @Valid RequestAuthorDTO dto) {
+    @Operation(summary = "Save", description = "register new author")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Register successfully"),
+            @ApiResponse(responseCode = "422", description = "Validation error"),
+            @ApiResponse(responseCode = "409", description = "Author already registered")
+    })
+    public ResponseEntity<Void> save(@RequestBody @Valid AuthorRequestDTO dto) {
 
         /*UserDetails userLogged = (UserDetails) authentication.getPrincipal();
         AuthUser authUser = authUserService.getByLogin(userLogged.getUsername());
@@ -41,11 +52,16 @@ public class AuthorController extends GenericController {
 
     @GetMapping("{id}")
     @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
-    public ResponseEntity<ResponseAuthorDTO> find(@PathVariable("id") UUID id) {
+    @Operation(summary = "Find", description = "Find the author by id")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Returns the found author"),
+            @ApiResponse(responseCode = "404", description = "Author not found")
+    })
+    public ResponseEntity<AuthorResponseDTO> find(@PathVariable("id") UUID id) {
 
         return service.findByUUID(id).map(author -> {
-            ResponseAuthorDTO responseAuthorDTO = mapper.toResponseAuthorDTO(author);
-            return ResponseEntity.ok(responseAuthorDTO);
+            AuthorResponseDTO authorResponseDTO = mapper.toResponseAuthorDTO(author);
+            return ResponseEntity.ok(authorResponseDTO);
         }).orElseGet(() -> ResponseEntity.notFound().build());
 
         //old way
@@ -65,6 +81,12 @@ public class AuthorController extends GenericController {
 
     @DeleteMapping("{id}")
     @PreAuthorize("hasRole('MANAGER')")
+    @Operation(summary = "Delete", description = "Deletes an existing author")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Delete successfully"),
+            @ApiResponse(responseCode = "404", description = "Author not found"),
+            @ApiResponse(responseCode = "404", description = "It is not possible to delete an author with a registered book")
+    })
     public ResponseEntity<?> delete(@PathVariable("id") UUID id) {
         return service.findByUUID(id).map(author -> {
             service.delete(author);
@@ -85,7 +107,11 @@ public class AuthorController extends GenericController {
 
     @GetMapping()
     @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
-    public ResponseEntity<List<ResponseAuthorDTO>> search(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "nationality", required = false) String nationality) {
+    @Operation(summary = "Search", description = "Search authors by name/nationality")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Successfully")
+    })
+    public ResponseEntity<List<AuthorResponseDTO>> search(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "nationality", required = false) String nationality) {
         return ResponseEntity
                 .ok(service.search(name, nationality)
                         .stream()
@@ -95,12 +121,18 @@ public class AuthorController extends GenericController {
 
     @PutMapping("{id}")
     @PreAuthorize("hasRole('MANAGER')")
-    public ResponseEntity<?> update(@PathVariable(value = "id") UUID id, @RequestBody @Valid RequestAuthorDTO requestAuthorDTO) {
+    @Operation(summary = "Update", description = "Update existing author")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Update successfully"),
+            @ApiResponse(responseCode = "404", description = "Author not found"),
+            @ApiResponse(responseCode = "409", description = "Author already exists")
+    })
+    public ResponseEntity<?> update(@PathVariable(value = "id") UUID id, @RequestBody @Valid AuthorRequestDTO authorRequestDTO) {
 
         return service.findByUUID(id).map(author -> {
-            author.setName(requestAuthorDTO.name());
-            author.setNationality(requestAuthorDTO.nationality());
-            author.setBirthDate(requestAuthorDTO.birthDate());
+            author.setName(authorRequestDTO.name());
+            author.setNationality(authorRequestDTO.nationality());
+            author.setBirthDate(authorRequestDTO.birthDate());
             service.update(author);
 
             return ResponseEntity.noContent().build();
