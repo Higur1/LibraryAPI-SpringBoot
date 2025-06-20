@@ -30,7 +30,6 @@ public class ResourceServerConfiguration {
                 .formLogin(httpSecurityFormLoginConfigurer ->
                         httpSecurityFormLoginConfigurer.loginPage("/login").permitAll()
                 )
-                .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize ->
                 {
                     authorize.requestMatchers(HttpMethod.POST, "/authUsers").permitAll();
