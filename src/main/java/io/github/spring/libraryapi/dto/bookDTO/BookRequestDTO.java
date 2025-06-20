@@ -1,6 +1,7 @@
 package io.github.spring.libraryapi.dto.bookDTO;
 
 import io.github.spring.libraryapi.model.Genre;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
+@Schema(name = "BookRequest")
 public record BookRequestDTO(
         @NotBlank(message = "Required field")
         @ISBN(message = "Invalid ISBN")

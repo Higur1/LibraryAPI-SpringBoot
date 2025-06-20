@@ -9,6 +9,7 @@ import io.github.spring.libraryapi.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,6 +22,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/books")
 @RequiredArgsConstructor
+@Tag(name = "Books")
 public class BookController extends GenericController {
     private final BookService service;
     private final BookMapper mapper;
@@ -30,8 +32,8 @@ public class BookController extends GenericController {
     @Operation(summary = "Save", description = "Register new book.")
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Register successfully."),
-            @ApiResponse(responseCode = "422", description = "Validation error."),
-            @ApiResponse(responseCode = "409", description = "Book already registered.")
+            @ApiResponse(responseCode = "409", description = "Book already registered."),
+            @ApiResponse(responseCode = "422", description = "Validation error.")
     })
     public ResponseEntity<Void> save(@RequestBody @Valid BookRequestDTO bookRequestDTO) {
 

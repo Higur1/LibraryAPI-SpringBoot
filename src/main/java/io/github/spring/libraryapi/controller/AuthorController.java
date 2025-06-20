@@ -30,11 +30,11 @@ public class AuthorController extends GenericController {
 
     @PostMapping
     @PreAuthorize("hasRole('MANAGER')")
-    @Operation(summary = "Save", description = "register new author")
+    @Operation(summary = "Save", description = "Register new author.")
     @ApiResponses({
-            @ApiResponse(responseCode = "201", description = "Register successfully"),
-            @ApiResponse(responseCode = "422", description = "Validation error"),
-            @ApiResponse(responseCode = "409", description = "Author already registered")
+            @ApiResponse(responseCode = "201", description = "Register successfully."),
+            @ApiResponse(responseCode = "409", description = "Author already registered."),
+            @ApiResponse(responseCode = "422", description = "Validation error.")
     })
     public ResponseEntity<Void> save(@RequestBody @Valid AuthorRequestDTO dto) {
 
@@ -52,10 +52,10 @@ public class AuthorController extends GenericController {
 
     @GetMapping("{id}")
     @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
-    @Operation(summary = "Find", description = "Find the author by id")
+    @Operation(summary = "Find", description = "Find the author by id.")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Returns the found author"),
-            @ApiResponse(responseCode = "404", description = "Author not found")
+            @ApiResponse(responseCode = "200", description = "Returns the found author."),
+            @ApiResponse(responseCode = "404", description = "Author not found.")
     })
     public ResponseEntity<AuthorResponseDTO> find(@PathVariable("id") UUID id) {
 
@@ -81,11 +81,11 @@ public class AuthorController extends GenericController {
 
     @DeleteMapping("{id}")
     @PreAuthorize("hasRole('MANAGER')")
-    @Operation(summary = "Delete", description = "Deletes an existing author")
+    @Operation(summary = "Delete", description = "Deletes an existing author.")
     @ApiResponses({
-            @ApiResponse(responseCode = "204", description = "Delete successfully"),
-            @ApiResponse(responseCode = "404", description = "Author not found"),
-            @ApiResponse(responseCode = "404", description = "It is not possible to delete an author with a registered book")
+            @ApiResponse(responseCode = "204", description = "Delete successfully."),
+            @ApiResponse(responseCode = "404", description = "Author not found."),
+            @ApiResponse(responseCode = "404", description = "It is not possible to delete an author with a registered book.")
     })
     public ResponseEntity<?> delete(@PathVariable("id") UUID id) {
         return service.findByUUID(id).map(author -> {
@@ -107,9 +107,9 @@ public class AuthorController extends GenericController {
 
     @GetMapping()
     @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
-    @Operation(summary = "Search", description = "Search authors by name/nationality")
+    @Operation(summary = "Search", description = "Search authors by parameters.")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Successfully")
+            @ApiResponse(responseCode = "200", description = "Search successfully.")
     })
     public ResponseEntity<List<AuthorResponseDTO>> search(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "nationality", required = false) String nationality) {
         return ResponseEntity
@@ -121,11 +121,11 @@ public class AuthorController extends GenericController {
 
     @PutMapping("{id}")
     @PreAuthorize("hasRole('MANAGER')")
-    @Operation(summary = "Update", description = "Update existing author")
+    @Operation(summary = "Update", description = "Update existing author.")
     @ApiResponses({
-            @ApiResponse(responseCode = "204", description = "Update successfully"),
-            @ApiResponse(responseCode = "404", description = "Author not found"),
-            @ApiResponse(responseCode = "409", description = "Author already exists")
+            @ApiResponse(responseCode = "204", description = "Update successfully."),
+            @ApiResponse(responseCode = "404", description = "Author not found."),
+            @ApiResponse(responseCode = "409", description = "Author already exists.")
     })
     public ResponseEntity<?> update(@PathVariable(value = "id") UUID id, @RequestBody @Valid AuthorRequestDTO authorRequestDTO) {
 
