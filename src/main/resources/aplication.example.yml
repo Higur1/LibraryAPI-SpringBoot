@@ -19,8 +19,16 @@ spring:
           google:
             client-id: ${OAUTH2_ID}
             client-secret: ${OAUTH2_SECRET}
+
 springdoc:
   override-with-generic-response: false
+
 logging:
   file:
     name: app.log
+  level:
+    root: warn
+    org:
+      springframework:
+        web: debug
+        security: trace
