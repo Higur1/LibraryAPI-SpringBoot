@@ -1,88 +1,428 @@
-2025-06-25T22:39:47.792-03:00  INFO 5132 --- [libraryapi] [main] i.github.spring.libraryapi.Application   : Starting Application using Java 21.0.7 with PID 5132 (C:\Users\Higor\Documents\GitHub\Java_Spring\libraryapi\target\classes started by Higor in C:\Users\Higor\Documents\GitHub\Java_Spring\libraryapi)
-2025-06-25T22:39:47.795-03:00  INFO 5132 --- [libraryapi] [main] i.github.spring.libraryapi.Application   : No active profile set, falling back to 1 default profile: "default"
-2025-06-25T22:39:55.282-03:00  INFO 5132 --- [libraryapi] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-06-25T22:39:55.544-03:00  INFO 5132 --- [libraryapi] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 241 ms. Found 4 JPA repository interfaces.
-2025-06-25T22:39:58.638-03:00  INFO 5132 --- [libraryapi] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-06-25T22:39:58.732-03:00  INFO 5132 --- [libraryapi] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-06-25T22:39:58.733-03:00  INFO 5132 --- [libraryapi] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
-2025-06-25T22:39:58.951-03:00  INFO 5132 --- [libraryapi] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-06-25T22:39:58.952-03:00  INFO 5132 --- [libraryapi] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 10672 ms
-2025-06-25T22:39:59.283-03:00  WARN 5132 --- [libraryapi] [main] com.zaxxer.hikari.HikariConfig           : library-db-pool - idleTimeout is close to or more than maxLifetime, disabling it.
-2025-06-25T22:39:59.301-03:00  INFO 5132 --- [libraryapi] [main] com.zaxxer.hikari.HikariDataSource       : library-db-pool - Starting...
-2025-06-25T22:40:00.676-03:00  INFO 5132 --- [libraryapi] [main] com.zaxxer.hikari.pool.HikariPool        : library-db-pool - Added connection org.postgresql.jdbc.PgConnection@2bcda694
-2025-06-25T22:40:00.679-03:00  INFO 5132 --- [libraryapi] [main] com.zaxxer.hikari.HikariDataSource       : library-db-pool - Start completed.
-2025-06-25T22:40:01.126-03:00  INFO 5132 --- [libraryapi] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-06-25T22:40:01.485-03:00  INFO 5132 --- [libraryapi] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2025-06-25T22:40:01.640-03:00  INFO 5132 --- [libraryapi] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-06-25T22:40:03.874-03:00  INFO 5132 --- [libraryapi] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-06-25T22:40:07.105-03:00  INFO 5132 --- [libraryapi] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-06-25T22:40:08.247-03:00  INFO 5132 --- [libraryapi] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-06-25T22:40:09.535-03:00  INFO 5132 --- [libraryapi] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-06-25T22:40:11.545-03:00  WARN 5132 --- [libraryapi] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-06-25T22:40:11.574-03:00  INFO 5132 --- [libraryapi] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name customAuthenticationProvider
-2025-06-25T22:40:13.526-03:00  WARN 5132 --- [libraryapi] [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Deferred [Mvc [pattern='/v2/api-docs/**'], Ant [pattern='/v2/api-docs/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-06-25T22:40:13.527-03:00  WARN 5132 --- [libraryapi] [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Deferred [Mvc [pattern='/v3/api-docs/**'], Ant [pattern='/v3/api-docs/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-06-25T22:40:13.527-03:00  WARN 5132 --- [libraryapi] [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-resources/**'], Ant [pattern='/swagger-resources/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-06-25T22:40:13.527-03:00  WARN 5132 --- [libraryapi] [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-ui.html'], Ant [pattern='/swagger-ui.html']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-06-25T22:40:13.527-03:00  WARN 5132 --- [libraryapi] [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-ui/**'], Ant [pattern='/swagger-ui/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-06-25T22:40:13.527-03:00  WARN 5132 --- [libraryapi] [main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Deferred [Mvc [pattern='/webjars/**'], Ant [pattern='/webjars/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-06-25T22:40:14.756-03:00  INFO 5132 --- [libraryapi] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-06-25T22:40:14.770-03:00  INFO 5132 --- [libraryapi] [main] i.github.spring.libraryapi.Application   : Started Application in 29.379 seconds (process running for 38.773)
-2025-06-25T22:48:17.316-03:00  INFO 5132 --- [libraryapi] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-06-25T22:48:17.318-03:00  INFO 5132 --- [libraryapi] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : library-db-pool - Shutdown initiated...
-2025-06-25T22:48:17.323-03:00  INFO 5132 --- [libraryapi] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : library-db-pool - Shutdown completed.
-2025-06-25T22:48:24.419-03:00  INFO 13320 --- [libraryapi] [main] i.github.spring.libraryapi.Application   : Starting Application using Java 21.0.7 with PID 13320 (C:\Users\Higor\Documents\GitHub\Java_Spring\libraryapi\target\classes started by Higor in C:\Users\Higor\Documents\GitHub\Java_Spring\libraryapi)
-2025-06-25T22:48:24.422-03:00  INFO 13320 --- [libraryapi] [main] i.github.spring.libraryapi.Application   : No active profile set, falling back to 1 default profile: "default"
-2025-06-25T22:48:26.501-03:00  INFO 13320 --- [libraryapi] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-06-25T22:48:26.720-03:00  INFO 13320 --- [libraryapi] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 201 ms. Found 4 JPA repository interfaces.
-2025-06-25T22:48:29.095-03:00  INFO 13320 --- [libraryapi] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-06-25T22:48:29.160-03:00  INFO 13320 --- [libraryapi] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-06-25T22:48:29.161-03:00  INFO 13320 --- [libraryapi] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
-2025-06-25T22:48:29.312-03:00  INFO 13320 --- [libraryapi] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-06-25T22:48:29.313-03:00  INFO 13320 --- [libraryapi] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4807 ms
-2025-06-25T22:48:29.396-03:00  WARN 13320 --- [libraryapi] [main] com.zaxxer.hikari.HikariConfig           : library-db-pool - idleTimeout is close to or more than maxLifetime, disabling it.
-2025-06-25T22:48:29.407-03:00  INFO 13320 --- [libraryapi] [main] com.zaxxer.hikari.HikariDataSource       : library-db-pool - Starting...
-2025-06-25T22:48:30.809-03:00  INFO 13320 --- [libraryapi] [main] com.zaxxer.hikari.pool.HikariPool        : library-db-pool - Added connection org.postgresql.jdbc.PgConnection@7336fd8f
-2025-06-25T22:48:30.811-03:00  INFO 13320 --- [libraryapi] [main] com.zaxxer.hikari.HikariDataSource       : library-db-pool - Start completed.
-2025-06-25T22:48:31.429-03:00  INFO 13320 --- [libraryapi] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-06-25T22:48:31.713-03:00  INFO 13320 --- [libraryapi] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2025-06-25T22:48:31.952-03:00  INFO 13320 --- [libraryapi] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-06-25T22:48:33.223-03:00  INFO 13320 --- [libraryapi] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-06-25T22:48:34.562-03:00  INFO 13320 --- [libraryapi] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-06-25T22:48:34.710-03:00  INFO 13320 --- [libraryapi] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-06-25T22:48:35.279-03:00  INFO 13320 --- [libraryapi] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-06-25T22:48:36.335-03:00  WARN 13320 --- [libraryapi] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-06-25T22:48:36.354-03:00  INFO 13320 --- [libraryapi] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name customAuthenticationProvider
-2025-06-25T22:48:38.669-03:00  INFO 13320 --- [libraryapi] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-06-25T22:48:38.691-03:00  INFO 13320 --- [libraryapi] [main] i.github.spring.libraryapi.Application   : Started Application in 14.945 seconds (process running for 15.585)
-2025-06-25T22:51:41.364-03:00  INFO 13320 --- [libraryapi] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-06-25T22:51:41.366-03:00  INFO 13320 --- [libraryapi] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : library-db-pool - Shutdown initiated...
-2025-06-25T22:51:41.369-03:00  INFO 13320 --- [libraryapi] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : library-db-pool - Shutdown completed.
-2025-06-25T22:51:44.107-03:00  INFO 13552 --- [libraryapi] [main] i.github.spring.libraryapi.Application   : Starting Application using Java 21.0.7 with PID 13552 (C:\Users\Higor\Documents\GitHub\Java_Spring\libraryapi\target\classes started by Higor in C:\Users\Higor\Documents\GitHub\Java_Spring\libraryapi)
-2025-06-25T22:51:44.110-03:00  INFO 13552 --- [libraryapi] [main] i.github.spring.libraryapi.Application   : No active profile set, falling back to 1 default profile: "default"
-2025-06-25T22:51:45.686-03:00  INFO 13552 --- [libraryapi] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-06-25T22:51:45.805-03:00  INFO 13552 --- [libraryapi] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 107 ms. Found 4 JPA repository interfaces.
-2025-06-25T22:51:46.937-03:00  INFO 13552 --- [libraryapi] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-06-25T22:51:46.957-03:00  INFO 13552 --- [libraryapi] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-06-25T22:51:46.958-03:00  INFO 13552 --- [libraryapi] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
-2025-06-25T22:51:47.080-03:00  INFO 13552 --- [libraryapi] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-06-25T22:51:47.081-03:00  INFO 13552 --- [libraryapi] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2902 ms
-2025-06-25T22:51:47.178-03:00  WARN 13552 --- [libraryapi] [main] com.zaxxer.hikari.HikariConfig           : library-db-pool - idleTimeout is close to or more than maxLifetime, disabling it.
-2025-06-25T22:51:47.188-03:00  INFO 13552 --- [libraryapi] [main] com.zaxxer.hikari.HikariDataSource       : library-db-pool - Starting...
-2025-06-25T22:51:47.438-03:00  INFO 13552 --- [libraryapi] [main] com.zaxxer.hikari.pool.HikariPool        : library-db-pool - Added connection org.postgresql.jdbc.PgConnection@5203c80f
-2025-06-25T22:51:47.442-03:00  INFO 13552 --- [libraryapi] [main] com.zaxxer.hikari.HikariDataSource       : library-db-pool - Start completed.
-2025-06-25T22:51:47.560-03:00  INFO 13552 --- [libraryapi] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-06-25T22:51:47.662-03:00  INFO 13552 --- [libraryapi] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2025-06-25T22:51:47.717-03:00  INFO 13552 --- [libraryapi] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-06-25T22:51:48.303-03:00  INFO 13552 --- [libraryapi] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-06-25T22:51:49.643-03:00  INFO 13552 --- [libraryapi] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-06-25T22:51:49.800-03:00  INFO 13552 --- [libraryapi] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-06-25T22:51:50.300-03:00  INFO 13552 --- [libraryapi] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-06-25T22:51:51.248-03:00  WARN 13552 --- [libraryapi] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-06-25T22:51:51.268-03:00  INFO 13552 --- [libraryapi] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name customAuthenticationProvider
-2025-06-25T22:51:52.778-03:00  INFO 13552 --- [libraryapi] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-06-25T22:51:52.794-03:00  INFO 13552 --- [libraryapi] [main] i.github.spring.libraryapi.Application   : Started Application in 9.429 seconds (process running for 9.961)
-2025-06-25T22:53:51.577-03:00  INFO 13552 --- [libraryapi] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-06-25T22:53:51.578-03:00  INFO 13552 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-06-25T22:53:51.579-03:00  INFO 13552 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-06-25T22:53:53.155-03:00  INFO 13552 --- [libraryapi] [http-nio-8080-exec-8] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 730 ms
+2025-06-26T00:00:07.258-03:00  WARN 13048 --- [libraryapi] [main] com.zaxxer.hikari.HikariConfig           : library-db-pool - idleTimeout is close to or more than maxLifetime, disabling it.
+2025-06-26T00:00:13.730-03:00  WARN 13048 --- [libraryapi] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-26T00:00:14.085-03:00 DEBUG 13048 --- [libraryapi] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 21 mappings in 'requestMappingHandlerMapping'
+2025-06-26T00:00:14.128-03:00 DEBUG 13048 --- [libraryapi] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/login] in 'viewControllerHandlerMapping'
+2025-06-26T00:00:14.207-03:00 DEBUG 13048 --- [libraryapi] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-06-26T00:00:16.201-03:00 DEBUG 13048 --- [libraryapi] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-06-26T00:00:16.332-03:00 DEBUG 13048 --- [libraryapi] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-06-26T00:00:48.537-03:00  INFO 13048 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-06-26T00:00:48.538-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-06-26T00:00:48.538-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-06-26T00:00:48.538-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-06-26T00:00:48.539-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@7f1f6c22
+2025-06-26T00:00:48.540-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@4178074f
+2025-06-26T00:00:48.540-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-06-26T00:00:48.540-03:00  INFO 13048 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-06-26T00:00:49.003-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/login", parameters={}
+2025-06-26T00:00:49.006-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ParameterizableViewController [view="login"]
+2025-06-26T00:00:49.972-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-06-26T00:01:11.591-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : PUT "/authors/97c7eaa7-d416-404d-b9a5-bff8c473fcb2", parameters={}
+2025-06-26T00:01:11.591-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to io.github.spring.libraryapi.controller.AuthorController#update(UUID, AuthorRequestDTO)
+2025-06-26T00:01:11.764-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthorRequestDTO[name=Author 1, birthDate=1950-01-15, nationality=Brazilian]]
+2025-06-26T00:03:09.051-03:00  WARN 13048 --- [libraryapi] [library-db-pool housekeeper] com.zaxxer.hikari.pool.HikariPool        : library-db-pool - Thread starvation or clock leap detected (housekeeper delta=1m21s188ms386µs100ns).
+2025-06-26T00:03:44.245-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler io.github.spring.libraryapi.common.GlobalExceptionHandler#handleDefaultError(RuntimeException)
+2025-06-26T00:03:44.245-03:00 ERROR 13048 --- [libraryapi] [http-nio-8080-exec-8] i.g.s.l.common.GlobalExceptionHandler    : An unexpected error
+
+java.util.NoSuchElementException: No value present
+	at java.base/java.util.Optional.get(Optional.java:143) ~[na:na]
+	at io.github.spring.libraryapi.validator.AuthorValidator.hasAuthor(AuthorValidator.java:30) ~[classes/:na]
+	at io.github.spring.libraryapi.validator.AuthorValidator.validate(AuthorValidator.java:17) ~[classes/:na]
+	at io.github.spring.libraryapi.service.AuthorService.update(AuthorService.java:91) ~[classes/:na]
+	at io.github.spring.libraryapi.controller.AuthorController.lambda$update$4(AuthorController.java:146) ~[classes/:na]
+	at java.base/java.util.Optional.map(Optional.java:260) ~[na:na]
+	at io.github.spring.libraryapi.controller.AuthorController.update(AuthorController.java:140) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:355) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.proceed(AuthorizationManagerBeforeMethodInterceptor.java:269) ~[spring-security-core-6.3.3.jar:6.3.3]
+	at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.attemptAuthorization(AuthorizationManagerBeforeMethodInterceptor.java:264) ~[spring-security-core-6.3.3.jar:6.3.3]
+	at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.invoke(AuthorizationManagerBeforeMethodInterceptor.java:197) ~[spring-security-core-6.3.3.jar:6.3.3]
+	at org.springframework.security.config.annotation.method.configuration.DeferringMethodInterceptor.invoke(DeferringMethodInterceptor.java:44) ~[spring-security-config-6.3.3.jar:6.3.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720) ~[spring-aop-6.1.13.jar:6.1.13]
+	at io.github.spring.libraryapi.controller.AuthorController$$SpringCGLIB$$0.update(<generated>) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:925) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:593) ~[tomcat-embed-core-10.1.30.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.30.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at io.github.spring.libraryapi.security.JwtCustomAuthenticationFilter.doFilterInternal(JwtCustomAuthenticationFilter.java:42) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter.doFilterInternal(BearerTokenAuthenticationFilter.java:145) ~[spring-security-oauth2-resource-server-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter.doFilterInternal(OAuth2AuthorizationRequestRedirectFilter.java:198) ~[spring-security-oauth2-client-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-06-26T00:03:44.284-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-06-26T00:03:44.299-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Writing [ResponseError[status=500, message=An unexpected error occurred. Please contact the system administra (truncated)...]
+2025-06-26T00:03:44.306-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.util.NoSuchElementException: No value present]
+2025-06-26T00:03:44.309-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 500 INTERNAL_SERVER_ERROR
+2025-06-26T00:07:51.689-03:00  WARN 1008 --- [libraryapi] [main] com.zaxxer.hikari.HikariConfig           : library-db-pool - idleTimeout is close to or more than maxLifetime, disabling it.
+2025-06-26T00:07:59.117-03:00  WARN 1008 --- [libraryapi] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-26T00:07:59.554-03:00 DEBUG 1008 --- [libraryapi] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 21 mappings in 'requestMappingHandlerMapping'
+2025-06-26T00:07:59.580-03:00 DEBUG 1008 --- [libraryapi] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/login] in 'viewControllerHandlerMapping'
+2025-06-26T00:07:59.680-03:00 DEBUG 1008 --- [libraryapi] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-06-26T00:08:01.273-03:00 DEBUG 1008 --- [libraryapi] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-06-26T00:08:01.384-03:00 DEBUG 1008 --- [libraryapi] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-06-26T00:08:19.179-03:00  WARN 5680 --- [libraryapi] [main] com.zaxxer.hikari.HikariConfig           : library-db-pool - idleTimeout is close to or more than maxLifetime, disabling it.
+2025-06-26T00:08:30.342-03:00  WARN 5680 --- [libraryapi] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-26T00:08:30.707-03:00 DEBUG 5680 --- [libraryapi] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 21 mappings in 'requestMappingHandlerMapping'
+2025-06-26T00:08:30.843-03:00 DEBUG 5680 --- [libraryapi] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/login] in 'viewControllerHandlerMapping'
+2025-06-26T00:08:30.891-03:00 DEBUG 5680 --- [libraryapi] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-06-26T00:08:32.402-03:00 DEBUG 5680 --- [libraryapi] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-06-26T00:08:32.477-03:00 DEBUG 5680 --- [libraryapi] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-06-26T00:08:55.588-03:00  INFO 5680 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-06-26T00:08:55.588-03:00 DEBUG 5680 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-06-26T00:08:55.588-03:00 DEBUG 5680 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-06-26T00:08:55.589-03:00 DEBUG 5680 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-06-26T00:08:55.590-03:00 DEBUG 5680 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@487befb
+2025-06-26T00:08:55.590-03:00 DEBUG 5680 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@22876aea
+2025-06-26T00:08:55.591-03:00 DEBUG 5680 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-06-26T00:08:55.591-03:00  INFO 5680 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-06-26T00:08:56.088-03:00 DEBUG 5680 --- [libraryapi] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/login", parameters={}
+2025-06-26T00:08:56.090-03:00 DEBUG 5680 --- [libraryapi] [http-nio-8080-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ParameterizableViewController [view="login"]
+2025-06-26T00:08:56.724-03:00 DEBUG 5680 --- [libraryapi] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-06-26T00:09:11.984-03:00 DEBUG 5680 --- [libraryapi] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : PUT "/authors/97c7eaa7-d416-404d-b9a5-bff8c473fcb2", parameters={}
+2025-06-26T00:09:11.985-03:00 DEBUG 5680 --- [libraryapi] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to io.github.spring.libraryapi.controller.AuthorController#update(UUID, AuthorRequestDTO)
+2025-06-26T00:09:12.157-03:00 DEBUG 5680 --- [libraryapi] [http-nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthorRequestDTO[name=Author 1, birthDate=1950-01-15, nationality=Brazilian]]
+2025-06-26T00:14:57.317-03:00  WARN 5680 --- [libraryapi] [library-db-pool housekeeper] com.zaxxer.hikari.pool.HikariPool        : library-db-pool - Thread starvation or clock leap detected (housekeeper delta=5m37s462ms475µs300ns).
+2025-06-26T00:14:57.325-03:00 DEBUG 5680 --- [libraryapi] [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler io.github.spring.libraryapi.common.GlobalExceptionHandler#handleDefaultError(RuntimeException)
+2025-06-26T00:14:57.326-03:00 ERROR 5680 --- [libraryapi] [http-nio-8080-exec-8] i.g.s.l.common.GlobalExceptionHandler    : An unexpected error
+
+java.util.NoSuchElementException: No value present
+	at java.base/java.util.Optional.get(Optional.java:143) ~[na:na]
+	at io.github.spring.libraryapi.validator.AuthorValidator.hasAuthor(AuthorValidator.java:31) ~[classes/:na]
+	at io.github.spring.libraryapi.validator.AuthorValidator.validate(AuthorValidator.java:17) ~[classes/:na]
+	at io.github.spring.libraryapi.service.AuthorService.update(AuthorService.java:91) ~[classes/:na]
+	at io.github.spring.libraryapi.controller.AuthorController.lambda$update$4(AuthorController.java:146) ~[classes/:na]
+	at java.base/java.util.Optional.map(Optional.java:260) ~[na:na]
+	at io.github.spring.libraryapi.controller.AuthorController.update(AuthorController.java:140) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:355) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.proceed(AuthorizationManagerBeforeMethodInterceptor.java:269) ~[spring-security-core-6.3.3.jar:6.3.3]
+	at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.attemptAuthorization(AuthorizationManagerBeforeMethodInterceptor.java:264) ~[spring-security-core-6.3.3.jar:6.3.3]
+	at org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor.invoke(AuthorizationManagerBeforeMethodInterceptor.java:197) ~[spring-security-core-6.3.3.jar:6.3.3]
+	at org.springframework.security.config.annotation.method.configuration.DeferringMethodInterceptor.invoke(DeferringMethodInterceptor.java:44) ~[spring-security-config-6.3.3.jar:6.3.3]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.13.jar:6.1.13]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720) ~[spring-aop-6.1.13.jar:6.1.13]
+	at io.github.spring.libraryapi.controller.AuthorController$$SpringCGLIB$$0.update(<generated>) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:925) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:593) ~[tomcat-embed-core-10.1.30.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.30.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at io.github.spring.libraryapi.security.JwtCustomAuthenticationFilter.doFilterInternal(JwtCustomAuthenticationFilter.java:42) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter.doFilterInternal(BearerTokenAuthenticationFilter.java:145) ~[spring-security-oauth2-resource-server-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter.doFilterInternal(OAuth2AuthorizationRequestRedirectFilter.java:198) ~[spring-security-oauth2-client-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.3.3.jar:6.3.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.13.jar:6.1.13]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.30.jar:10.1.30]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-06-26T00:14:57.349-03:00 DEBUG 5680 --- [libraryapi] [http-nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-06-26T00:14:57.353-03:00 DEBUG 5680 --- [libraryapi] [http-nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Writing [ResponseError[status=500, message=An unexpected error occurred. Please contact the system administra (truncated)...]
+2025-06-26T00:14:57.357-03:00 DEBUG 5680 --- [libraryapi] [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.util.NoSuchElementException: No value present]
+2025-06-26T00:14:57.358-03:00 DEBUG 5680 --- [libraryapi] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 500 INTERNAL_SERVER_ERROR
+2025-06-26T00:15:07.273-03:00  WARN 10384 --- [libraryapi] [main] com.zaxxer.hikari.HikariConfig           : library-db-pool - idleTimeout is close to or more than maxLifetime, disabling it.
+2025-06-26T00:15:12.515-03:00  WARN 10384 --- [libraryapi] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-26T00:15:12.875-03:00 DEBUG 10384 --- [libraryapi] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 21 mappings in 'requestMappingHandlerMapping'
+2025-06-26T00:15:12.917-03:00 DEBUG 10384 --- [libraryapi] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/login] in 'viewControllerHandlerMapping'
+2025-06-26T00:15:12.987-03:00 DEBUG 10384 --- [libraryapi] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-06-26T00:15:14.466-03:00 DEBUG 10384 --- [libraryapi] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-06-26T00:15:14.531-03:00 DEBUG 10384 --- [libraryapi] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-06-26T00:15:31.359-03:00  INFO 10384 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-06-26T00:15:31.360-03:00 DEBUG 10384 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-06-26T00:15:31.360-03:00 DEBUG 10384 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-06-26T00:15:31.361-03:00 DEBUG 10384 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-06-26T00:15:31.363-03:00 DEBUG 10384 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@70d28000
+2025-06-26T00:15:31.363-03:00 DEBUG 10384 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@49235e8c
+2025-06-26T00:15:31.364-03:00 DEBUG 10384 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-06-26T00:15:31.364-03:00  INFO 10384 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2025-06-26T00:15:32.172-03:00 DEBUG 10384 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/login", parameters={}
+2025-06-26T00:15:32.175-03:00 DEBUG 10384 --- [libraryapi] [http-nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ParameterizableViewController [view="login"]
+2025-06-26T00:15:32.677-03:00 DEBUG 10384 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-06-26T00:15:56.287-03:00 DEBUG 10384 --- [libraryapi] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : PUT "/authors/97c7eaa7-d416-404d-b9a5-bff8c473fcb2", parameters={}
+2025-06-26T00:15:56.287-03:00 DEBUG 10384 --- [libraryapi] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to io.github.spring.libraryapi.controller.AuthorController#update(UUID, AuthorRequestDTO)
+2025-06-26T00:15:56.462-03:00 DEBUG 10384 --- [libraryapi] [http-nio-8080-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthorRequestDTO[name=Author 1, birthDate=1950-01-15, nationality=Brazilian]]
+2025-06-26T00:16:31.896-03:00 DEBUG 10384 --- [libraryapi] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/octet-stream', given [*/*] and supported [*/*]
+2025-06-26T00:16:31.901-03:00 DEBUG 10384 --- [libraryapi] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2025-06-26T00:17:59.413-03:00  WARN 12764 --- [libraryapi] [main] com.zaxxer.hikari.HikariConfig           : library-db-pool - idleTimeout is close to or more than maxLifetime, disabling it.
+2025-06-26T00:18:03.436-03:00  WARN 12764 --- [libraryapi] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-26T00:18:03.635-03:00 DEBUG 12764 --- [libraryapi] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 21 mappings in 'requestMappingHandlerMapping'
+2025-06-26T00:18:03.671-03:00 DEBUG 12764 --- [libraryapi] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/login] in 'viewControllerHandlerMapping'
+2025-06-26T00:18:03.731-03:00 DEBUG 12764 --- [libraryapi] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-06-26T00:18:04.703-03:00 DEBUG 12764 --- [libraryapi] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-06-26T00:18:04.744-03:00 DEBUG 12764 --- [libraryapi] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-06-26T00:28:42.895-03:00  WARN 11776 --- [libraryapi] [main] com.zaxxer.hikari.HikariConfig           : library-db-pool - idleTimeout is close to or more than maxLifetime, disabling it.
+2025-06-26T00:28:48.095-03:00  WARN 11776 --- [libraryapi] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-26T00:28:48.388-03:00 DEBUG 11776 --- [libraryapi] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 21 mappings in 'requestMappingHandlerMapping'
+2025-06-26T00:28:48.440-03:00 DEBUG 11776 --- [libraryapi] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/login] in 'viewControllerHandlerMapping'
+2025-06-26T00:28:48.528-03:00 DEBUG 11776 --- [libraryapi] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-06-26T00:28:49.534-03:00 DEBUG 11776 --- [libraryapi] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-06-26T00:28:49.582-03:00 DEBUG 11776 --- [libraryapi] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-06-26T00:36:07.986-03:00  WARN 13048 --- [libraryapi] [main] com.zaxxer.hikari.HikariConfig           : library-db-pool - idleTimeout is close to or more than maxLifetime, disabling it.
+2025-06-26T00:36:13.102-03:00  WARN 13048 --- [libraryapi] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-26T00:36:13.487-03:00 DEBUG 13048 --- [libraryapi] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 21 mappings in 'requestMappingHandlerMapping'
+2025-06-26T00:36:13.543-03:00 DEBUG 13048 --- [libraryapi] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/login] in 'viewControllerHandlerMapping'
+2025-06-26T00:36:13.644-03:00 DEBUG 13048 --- [libraryapi] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-06-26T00:36:14.957-03:00 DEBUG 13048 --- [libraryapi] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-06-26T00:36:14.994-03:00 DEBUG 13048 --- [libraryapi] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-06-26T00:36:44.349-03:00  INFO 13048 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-06-26T00:36:44.349-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-06-26T00:36:44.349-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-06-26T00:36:44.349-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-06-26T00:36:44.351-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@7e913ef1
+2025-06-26T00:36:44.354-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@35ab67d4
+2025-06-26T00:36:44.354-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-06-26T00:36:44.354-03:00  INFO 13048 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-06-26T00:36:44.591-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/login", parameters={}
+2025-06-26T00:36:44.596-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ParameterizableViewController [view="login"]
+2025-06-26T00:36:44.919-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-06-26T00:37:22.021-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : POST "/authors", parameters={}
+2025-06-26T00:37:22.021-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to io.github.spring.libraryapi.controller.AuthorController#save(AuthorRequestDTO)
+2025-06-26T00:37:22.124-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthorRequestDTO[name=Teste author, birthDate=1980-05-05, nationality=1233]]
+2025-06-26T00:37:22.332-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-06-26T00:37:22.332-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2025-06-26T00:37:22.334-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 201 CREATED
+2025-06-26T00:40:04.623-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : POST "/authors", parameters={}
+2025-06-26T00:40:04.623-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to io.github.spring.libraryapi.controller.AuthorController#save(AuthorRequestDTO)
+2025-06-26T00:40:04.625-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthorRequestDTO[name=Teste author 2, birthDate=1980-05-05, nationality=1233]]
+2025-06-26T00:40:04.706-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-06-26T00:40:04.706-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2025-06-26T00:40:04.707-03:00 DEBUG 13048 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 201 CREATED
+2025-06-26T00:41:03.799-03:00  WARN 13804 --- [libraryapi] [main] com.zaxxer.hikari.HikariConfig           : library-db-pool - idleTimeout is close to or more than maxLifetime, disabling it.
+2025-06-26T00:41:08.261-03:00  WARN 13804 --- [libraryapi] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-26T00:41:08.483-03:00 DEBUG 13804 --- [libraryapi] [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 21 mappings in 'requestMappingHandlerMapping'
+2025-06-26T00:41:08.501-03:00 DEBUG 13804 --- [libraryapi] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/login] in 'viewControllerHandlerMapping'
+2025-06-26T00:41:08.543-03:00 DEBUG 13804 --- [libraryapi] [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-06-26T00:41:09.378-03:00 DEBUG 13804 --- [libraryapi] [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-06-26T00:41:09.419-03:00 DEBUG 13804 --- [libraryapi] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-06-26T00:41:20.471-03:00  INFO 13804 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-06-26T00:41:20.472-03:00 DEBUG 13804 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-06-26T00:41:20.472-03:00 DEBUG 13804 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-06-26T00:41:20.472-03:00 DEBUG 13804 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-06-26T00:41:20.474-03:00 DEBUG 13804 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@2ccf85e9
+2025-06-26T00:41:20.480-03:00 DEBUG 13804 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@6f8f0c59
+2025-06-26T00:41:20.480-03:00 DEBUG 13804 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-06-26T00:41:20.481-03:00  INFO 13804 --- [libraryapi] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2025-06-26T00:41:20.812-03:00 DEBUG 13804 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/login", parameters={}
+2025-06-26T00:41:20.814-03:00 DEBUG 13804 --- [libraryapi] [http-nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ParameterizableViewController [view="login"]
+2025-06-26T00:41:21.205-03:00 DEBUG 13804 --- [libraryapi] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-06-26T00:41:38.914-03:00 DEBUG 13804 --- [libraryapi] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : POST "/authors", parameters={}
+2025-06-26T00:41:38.915-03:00 DEBUG 13804 --- [libraryapi] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to io.github.spring.libraryapi.controller.AuthorController#save(AuthorRequestDTO)
+2025-06-26T00:41:39.014-03:00 DEBUG 13804 --- [libraryapi] [http-nio-8080-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthorRequestDTO[name=Teste author 3, birthDate=1980-05-05, nationality=1233]]
+2025-06-26T00:41:39.085-03:00  INFO 13804 --- [libraryapi] [http-nio-8080-exec-8] i.g.s.l.controller.AuthorController      : Registering new author: Teste author 3 by: higor
+2025-06-26T00:41:39.229-03:00 DEBUG 13804 --- [libraryapi] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-06-26T00:41:39.229-03:00 DEBUG 13804 --- [libraryapi] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2025-06-26T00:41:39.231-03:00 DEBUG 13804 --- [libraryapi] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 201 CREATED
+2025-06-26T00:42:24.710-03:00 ERROR 4724 --- [libraryapi] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to bind properties under 'logging.level.io.github.spring.libraryapi.file.name' to org.springframework.boot.logging.LogLevel:
+
+    Property: logging.level.io.github.spring.libraryapi.file.name
+    Value: "controller.log"
+    Origin: class path resource [application.yml] - 37:21
+    Reason: failed to convert java.lang.String to org.springframework.boot.logging.LogLevel (caused by java.lang.IllegalArgumentException: No enum constant org.springframework.boot.logging.LogLevel.controller.log)
+
+Action:
+
+Update your application's configuration. The following values are valid:
+
+    DEBUG
+    ERROR
+    FATAL
+    INFO
+    OFF
+    TRACE
+    WARN
+

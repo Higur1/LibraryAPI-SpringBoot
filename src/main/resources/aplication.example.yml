@@ -28,7 +28,11 @@ logging:
     name: app.log
   level:
     root: warn
+    io:
+      github:
+        spring:
+          libraryapi:
+            controller: info
     org:
       springframework:
         web: debug
-        security: trace

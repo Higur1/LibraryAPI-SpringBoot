@@ -3,6 +3,7 @@ package io.github.spring.libraryapi.common;
 import io.github.spring.libraryapi.exceptions.DuplicateRecordException;
 import io.github.spring.libraryapi.exceptions.InvalidFieldException;
 import io.github.spring.libraryapi.exceptions.OperationNotAllowedException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.FieldError;
@@ -16,12 +17,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice //capture exceptions and return Rest response
+@Slf4j
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY) // no need to use response entity to send status error
     public ResponseError handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-
+        log.error("Validation error: {}", e.getMessage());
         List<FieldError> fieldErrors = e.getFieldErrors();
 
         List<CustomFieldError> listCustomFieldErrors =
@@ -66,6 +68,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseError handleDefaultError(RuntimeException e) {
+        log.error("An unexpected error", e);
         return new ResponseError(HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 "An unexpected error occurred. Please contact the system administrator.",
                 List.of());

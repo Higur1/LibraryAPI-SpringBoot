@@ -5,6 +5,7 @@ import io.github.spring.libraryapi.dto.bookDTO.BookResponseDTO;
 import io.github.spring.libraryapi.mappers.BookMapper;
 import io.github.spring.libraryapi.model.Book;
 import io.github.spring.libraryapi.model.Genre;
+import io.github.spring.libraryapi.security.CurrentUserService;
 import io.github.spring.libraryapi.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -12,6 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,9 +25,11 @@ import java.util.UUID;
 @RequestMapping("/books")
 @RequiredArgsConstructor
 @Tag(name = "Books")
+@Slf4j
 public class BookController extends GenericController {
     private final BookService service;
     private final BookMapper mapper;
+    private final CurrentUserService userService;
 
     @PostMapping
     @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
@@ -38,6 +42,7 @@ public class BookController extends GenericController {
     public ResponseEntity<Void> save(@RequestBody @Valid BookRequestDTO bookRequestDTO) {
 
         Book book = mapper.toEntity(bookRequestDTO);
+        log.info("Registering new book: {} isbn: {} by: {}", bookRequestDTO.title(), bookRequestDTO.isbn(), userService.getCurrentUserName());
         service.save(book);
 
         return ResponseEntity.created(generateHeaderLocation(book.getId())).build();
@@ -45,7 +50,7 @@ public class BookController extends GenericController {
 
     @GetMapping("{id}")
     @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
-    @Operation(summary = "Find" , description = "Find the book by id.")
+    @Operation(summary = "Find", description = "Find the book by id.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Returns the found book."),
             @ApiResponse(responseCode = "404", description = "Book not found.")
@@ -59,7 +64,7 @@ public class BookController extends GenericController {
 
     @GetMapping
     @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
-    @Operation(summary = "Search" , description = "Search books by parameters.")
+    @Operation(summary = "Search", description = "Search books by parameters.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Returns the found books."),
     })
@@ -88,7 +93,7 @@ public class BookController extends GenericController {
 
     @PutMapping("{id}")
     @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
-    @Operation(summary = "Update" , description = "Update existing book.")
+    @Operation(summary = "Update", description = "Update existing book.")
     @ApiResponses({
             @ApiResponse(responseCode = "204", description = "Update successfully."),
             @ApiResponse(responseCode = "404", description = "Book not found."),
@@ -96,7 +101,7 @@ public class BookController extends GenericController {
 
     })
     public ResponseEntity<?> update(@PathVariable("id") UUID id, @RequestBody @Valid BookRequestDTO bookRequestDTO) {
-
+        log.info("Updating book id: {} title: {} isbn: {} by: {}", id, bookRequestDTO.title(), bookRequestDTO.isbn(), userService.getCurrentUserName());
         return service.findByUUID(id).map(book -> {
             Book entityAux = mapper.toEntity(bookRequestDTO);
             book.setReleaseDate(entityAux.getReleaseDate());
@@ -114,13 +119,16 @@ public class BookController extends GenericController {
 
     @DeleteMapping("{id}")
     @PreAuthorize("hasAnyRole('OPERATOR', 'MANAGER')")
-    @Operation(summary = "Delete" , description = "Deletes an existing book.")
+    @Operation(summary = "Delete", description = "Deletes an existing book.")
     @ApiResponses({
             @ApiResponse(responseCode = "204", description = "Delete successfully."),
             @ApiResponse(responseCode = "404", description = "Book not found.")
     })
     public ResponseEntity<?> delete(@PathVariable("id") UUID id) {
+
+
         return service.findByUUID(id).map(book -> {
+            log.info("Deleting book id: {} title: {} isbn: {} by: {}", book.getId(), book.getTitle(), book.getIsbn(), userService.getCurrentUserName());
             service.delete(book);
             return ResponseEntity.noContent().build();
         }).orElseGet(() -> ResponseEntity.notFound().build());

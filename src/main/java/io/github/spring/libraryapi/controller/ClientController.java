@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/clients")
 @PreAuthorize("hasRole('MANAGER')")
 @Tag(name = "Clients")
+@Slf4j
 public class ClientController {
 
     private final ClientService service;
@@ -30,7 +32,9 @@ public class ClientController {
             @ApiResponse(responseCode = "409", description = "Client already exists."),
             @ApiResponse(responseCode = "422", description = "Validation error.")
     })
+
     public void save(@RequestBody ClientRequestDTO clientRequestDTO) {
+        log.info("Registering new client: {} with scope: {}", clientRequestDTO.clientId(), clientRequestDTO.scope());
         service.save(mapper.toEntity(clientRequestDTO));
     }
 }

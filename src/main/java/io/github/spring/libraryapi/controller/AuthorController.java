@@ -4,6 +4,7 @@ import io.github.spring.libraryapi.dto.authorDTO.AuthorRequestDTO;
 import io.github.spring.libraryapi.dto.authorDTO.AuthorResponseDTO;
 import io.github.spring.libraryapi.mappers.AuthorMapper;
 import io.github.spring.libraryapi.model.Author;
+import io.github.spring.libraryapi.security.CurrentUserService;
 import io.github.spring.libraryapi.service.AuthorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -11,6 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -19,14 +21,17 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/authors")
 @Tag(name = "Authors")
+@Slf4j
 public class AuthorController extends GenericController {
 
     private final AuthorService service;
     private final AuthorMapper mapper;
+    private final CurrentUserService userService;
 
     @PostMapping
     @PreAuthorize("hasRole('MANAGER')")
@@ -37,6 +42,7 @@ public class AuthorController extends GenericController {
             @ApiResponse(responseCode = "422", description = "Validation error.")
     })
     public ResponseEntity<Void> save(@RequestBody @Valid AuthorRequestDTO dto) {
+        log.info("Registering new author: {} by: {}", dto.name(), userService.getCurrentUserName());
 
         /*UserDetails userLogged = (UserDetails) authentication.getPrincipal();
         AuthUser authUser = authUserService.getByLogin(userLogged.getUsername());
@@ -88,7 +94,9 @@ public class AuthorController extends GenericController {
             @ApiResponse(responseCode = "404", description = "It is not possible to delete an author with a registered book.")
     })
     public ResponseEntity<?> delete(@PathVariable("id") UUID id) {
+
         return service.findByUUID(id).map(author -> {
+            log.info("Deleting author id: {} name: {} by: {}", author.getId(), author.getName(), userService.getCurrentUserName());
             service.delete(author);
             return ResponseEntity.noContent().build();
         }).orElseGet(() -> ResponseEntity.notFound().build());
@@ -133,6 +141,7 @@ public class AuthorController extends GenericController {
             author.setName(authorRequestDTO.name());
             author.setNationality(authorRequestDTO.nationality());
             author.setBirthDate(authorRequestDTO.birthDate());
+            log.info("Updating author id: {} by: {}", author.getId(), userService.getCurrentUserName());
             service.update(author);
 
             return ResponseEntity.noContent().build();

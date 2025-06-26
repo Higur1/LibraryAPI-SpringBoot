@@ -29,7 +29,7 @@ public class AuthUserController {
             @ApiResponse(responseCode = "201", description = "Register successfully."),
             @ApiResponse(responseCode = "409", description = "AuthUser already registered."),
             @ApiResponse(responseCode = "422", description = "Validation error.")
-        }
+    }
     )
     public void save(@RequestBody @Valid AuthUserRequestDTO authUserRequestDTO) {
         AuthUser user = mapper.toEntity(authUserRequestDTO);
