@@ -23,7 +23,7 @@ import java.util.ArrayList;
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true)
 public class ResourceServerConfiguration {
-    private static final String[] SWAGGER_ENDPOINTS = {
+    private static final String[]  EXCLUDED_ENDPOINTS= {
             "/v2/api-docs/**",
             "/v3/api-docs/**",
             "/swagger-resources/**",
@@ -42,7 +42,9 @@ public class ResourceServerConfiguration {
                 .authorizeHttpRequests(authorize ->
                 {
                     authorize.requestMatchers(HttpMethod.POST, "/authUsers").permitAll();
-                    authorize.requestMatchers(SWAGGER_ENDPOINTS).permitAll();
+                    authorize.requestMatchers(EXCLUDED_ENDPOINTS).permitAll();
+                    authorize.requestMatchers("/actuator/health", "/actuator/info").permitAll();
+                    authorize.requestMatchers("/actuator/**").hasRole("MANAGER");
                     //authorize.requestMatchers(HttpMethod.POST, "/authors").hasRole("ADMIN");
                     authorize.anyRequest().authenticated();
                 })
