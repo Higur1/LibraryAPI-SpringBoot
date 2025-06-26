@@ -21,3 +21,6 @@ spring:
             client-secret: ${OAUTH2_SECRET}
 springdoc:
   override-with-generic-response: false
+logging:
+  file:
+    name: app.log
