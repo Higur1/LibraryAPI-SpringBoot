@@ -17,14 +17,23 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtGra
 import org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 
+import java.util.ArrayList;
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true)
 public class ResourceServerConfiguration {
+    private static final String[] SWAGGER_ENDPOINTS = {
+            "/v2/api-docs/**",
+            "/v3/api-docs/**",
+            "/swagger-resources/**",
+            "/swagger-ui.html",
+            "/swagger-ui/**",
+            "/webjars/**"
+    };
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, SocialLoginSuccessHandler socialLoginSuccessHandler, JwtCustomAuthenticationFilter jwtCustomAuthenticationFilter) throws Exception {
-
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(httpSecurityFormLoginConfigurer ->
@@ -33,6 +42,7 @@ public class ResourceServerConfiguration {
                 .authorizeHttpRequests(authorize ->
                 {
                     authorize.requestMatchers(HttpMethod.POST, "/authUsers").permitAll();
+                    authorize.requestMatchers(SWAGGER_ENDPOINTS).permitAll();
                     //authorize.requestMatchers(HttpMethod.POST, "/authors").hasRole("ADMIN");
                     authorize.anyRequest().authenticated();
                 })
@@ -47,7 +57,7 @@ public class ResourceServerConfiguration {
     }
 
     //releasing swagger access
-    @Bean
+   /* @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web.ignoring().requestMatchers(
                 "/v2/api-docs/**",
@@ -58,7 +68,7 @@ public class ResourceServerConfiguration {
                 "/webjars/**"
 
         );
-    };
+    };*/
 
 
 @Bean
