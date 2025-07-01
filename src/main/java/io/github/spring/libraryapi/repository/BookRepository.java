@@ -25,7 +25,6 @@ public interface BookRepository extends JpaRepository<Book, UUID>, JpaSpecificat
 
     Optional<Book> findByIsbn(String isbn);
 
-
     @Query("SELECT book from Book as book ORDER BY book.title, book.price")
     List<Book> listAllOrderByTitleAndPrice();
 
@@ -36,28 +35,25 @@ public interface BookRepository extends JpaRepository<Book, UUID>, JpaSpecificat
     List<String> listOfDistinctName();
 
     @Query("""
-            SELECT book.genre
-            FROM Book book
-            JOIN book.author author
-            WHERE author.nationality = 'Brazilian'
-            ORDER BY book.genre
+           SELECT book.genre
+           FROM Book book
+           JOIN book.author author
+           WHERE author.nationality = 'Brazilian'
+           ORDER BY book.genre
             """)
     List<String> listOfGenreBrazilianAuthors();
 
     @Query("SELECT book from Book book WHERE book.genre = :genre order by :price")
-    List<Book> findByGenre(@Param("genre") Genre genre, @Param("price") BigDecimal price);
-
-    @Query("SELECT book from Book book WHERE book.genre = ?1 order by ?2")
-    List<Book> findByGenrePositionalParam(Genre genre, BigDecimal price);
+    List<Book> findByGenreOrderPrice(@Param("genre") Genre genre, @Param("price") BigDecimal price);
 
     @Modifying
     @Transactional
-    @Query("DELETE from Book WHERE genre = ?1")
+    @Query("DELETE FROM Book book WHERE book.genre = ?1")
     void deleteByGenre(Genre genre);
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Transactional
-    @Query("UPDATE Book SET releaseDate = ?1 WHERE id = ?2")
+    @Query("UPDATE Book book SET book.releaseDate = ?1 WHERE book.id = ?2")
     void updateReleaseDate(LocalDate newReleaseDate, UUID uuid);
 
     boolean existsByAuthor(Author author);
