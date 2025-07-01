@@ -13,18 +13,18 @@ public class AuthUserService {
     private final AuthUserRepository repository;
     private final PasswordEncoder encoder;
 
-    public void save(AuthUser authUser){
+    public void save(AuthUser authUser) {
         String password = authUser.getPassword();
         authUser.setPassword(encoder.encode(password));
 
         repository.save(authUser);
     }
 
-    public AuthUser getByLogin(String login){
+    public AuthUser getByLogin(String login) {
         return repository.findByLogin(login);
     }
 
-    public AuthUser getByEmail(String email){
+    public AuthUser getByEmail(String email) {
         return repository.findByEmail(email);
     }
 }

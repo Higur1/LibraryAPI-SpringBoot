@@ -80,7 +80,6 @@ public class AuthorizationServerConfiguration {
                 .build();
     }
 
-    //JWK Generator - Json Web Key
     @Bean
     public JWKSource<SecurityContext> securityContextJWKSource() throws Exception {
         RSAKey rsaKey = generateRSAKey();
@@ -105,12 +104,12 @@ public class AuthorizationServerConfiguration {
     }
 
     @Bean
-    public JwtDecoder jwtDecoder(JWKSource<SecurityContext> securityContextJWKSource){
+    public JwtDecoder jwtDecoder(JWKSource<SecurityContext> securityContextJWKSource) {
         return OAuth2AuthorizationServerConfiguration.jwtDecoder(securityContextJWKSource);
     }
 
     @Bean
-    public AuthorizationServerSettings authorizationServerSettings(){
+    public AuthorizationServerSettings authorizationServerSettings() {
         return AuthorizationServerSettings
                 .builder()
                 .tokenEndpoint("/oauth2/token")
@@ -124,12 +123,12 @@ public class AuthorizationServerConfiguration {
     }
 
     @Bean
-    public OAuth2TokenCustomizer<JwtEncodingContext> tokenCustomizer(){
+    public OAuth2TokenCustomizer<JwtEncodingContext> tokenCustomizer() {
         return context -> {
             Authentication principal = context.getPrincipal();
-            if(principal instanceof CustomAuthentication customAuthentication){
+            if (principal instanceof CustomAuthentication customAuthentication) {
                 OAuth2TokenType tokenType = context.getTokenType();
-                if(OAuth2TokenType.ACCESS_TOKEN.equals(tokenType)){
+                if (OAuth2TokenType.ACCESS_TOKEN.equals(tokenType)) {
                     Collection<? extends GrantedAuthority> authorities = customAuthentication.getAuthorities();
                     List<String> collectList = authorities
                             .stream()

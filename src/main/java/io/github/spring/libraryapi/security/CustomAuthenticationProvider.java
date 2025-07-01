@@ -32,12 +32,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
                         userByLogin.getPassword()
                 );
 
-        if(matcherPassword){
+        if (matcherPassword) {
             return new CustomAuthentication(userByLogin);
         }
-
         throw getUserNotFound();
     }
+
     private static UsernameNotFoundException getUserNotFound() {
         return new UsernameNotFoundException("Incorrect username or password");
     }
@@ -46,6 +46,4 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     public boolean supports(Class<?> authentication) {
         return authentication.isAssignableFrom(UsernamePasswordAuthenticationToken.class);
     }
-
-
 }

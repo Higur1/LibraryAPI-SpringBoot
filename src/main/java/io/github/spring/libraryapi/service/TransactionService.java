@@ -26,8 +26,6 @@ public class TransactionService {
     public void updateWithoutUpdate() {
         var book = bookRepository.findById(UUID.fromString("87125a4b-3276-4b60-9ff4-47712d4aac7a")).orElse(null);
         book.setReleaseDate(LocalDate.of(2024, 6, 1));
-
-        //no need call save to update in database using transactional - Manager status
     }
 
     @Transactional

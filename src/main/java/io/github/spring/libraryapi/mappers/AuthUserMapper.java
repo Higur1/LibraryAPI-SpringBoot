@@ -9,5 +9,6 @@ import org.mapstruct.Mapper;
 public abstract class AuthUserMapper {
 
     public abstract AuthUser toEntity(AuthUserRequestDTO authUserRequestDTO);
+
     public abstract AuthUserResponseDTO toResponseAuthUserDTO(AuthUser user);
 }

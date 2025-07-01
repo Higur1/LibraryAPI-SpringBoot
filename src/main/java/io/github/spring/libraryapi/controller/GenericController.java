@@ -6,7 +6,7 @@ import java.net.URI;
 import java.util.UUID;
 
 public abstract class GenericController {
-    protected URI generateHeaderLocation(UUID id){
+    protected URI generateHeaderLocation(UUID id) {
         return ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")

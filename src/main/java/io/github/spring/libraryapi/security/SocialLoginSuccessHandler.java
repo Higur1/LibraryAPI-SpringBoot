@@ -60,7 +60,7 @@ public class SocialLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
         service.save(authUser);
     }
 
-    private String handleEmail(String email){
+    private String handleEmail(String email) {
         return email.substring(0, email.indexOf("@"));
     }
 }

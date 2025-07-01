@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 
-import java.util.UUID;
 import java.util.List;
+import java.util.UUID;
 
 
 @Entity

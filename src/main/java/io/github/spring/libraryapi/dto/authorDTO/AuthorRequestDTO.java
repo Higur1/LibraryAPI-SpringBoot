@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Schema(name = "AuthorRequest")
 public record AuthorRequestDTO(
         @NotBlank(message = "Required field")
-        @Size(min = 2,max = 100, message = "Name must not exceed 100 characters")
+        @Size(min = 2, max = 100, message = "Name must not exceed 100 characters")
         @Schema(name = "name")
         String name,
         @NotNull
@@ -19,7 +19,7 @@ public record AuthorRequestDTO(
         @Schema(name = "birthDate")
         LocalDate birthDate,
         @NotBlank(message = "Required field")
-        @Size(min = 3,max = 100, message = "Nationality must not exceed 50 characters")
+        @Size(min = 3, max = 100, message = "Nationality must not exceed 50 characters")
         @Schema(name = "nationality")
         String nationality) {
 }

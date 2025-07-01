@@ -34,7 +34,7 @@ public class BookValidator {
                 .stream()
                 .anyMatch(id -> !id.equals(book.getId()));
     }
-    //if release date after 2020 field price is required
+
     private boolean isRequiredPriceNotProvided(Book book){
         return book.getPrice() == null && book.getReleaseDate().getYear() >= PRICE_REQUIRED_FROM_YEAR;
     }

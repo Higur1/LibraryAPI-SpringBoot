@@ -14,7 +14,7 @@ import java.util.UUID;
 
 
 @Table(name = "author", schema = "public")
-@Data //getters, setters, toString
+@Data
 @ToString(exclude = "books")
 @EntityListeners(AuditingEntityListener.class)
 @Entity
@@ -45,7 +45,7 @@ public class Author {
     @JoinColumn(name = "user_id")
     private AuthUser authUser;
 
-    @Deprecated //need to framework
+    @Deprecated
     public Author() {
     }
 

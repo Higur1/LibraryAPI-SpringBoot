@@ -24,7 +24,7 @@ public class LoginViewController {
 
     @GetMapping("/authorized")
     @ResponseBody
-    public String getAuthorizationCode(@RequestParam("code") String code){
-        return "Your code: "+code;
+    public String getAuthorizationCode(@RequestParam("code") String code) {
+        return "Your code: " + code;
     }
 }

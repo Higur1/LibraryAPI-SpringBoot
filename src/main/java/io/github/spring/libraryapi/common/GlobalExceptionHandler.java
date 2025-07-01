@@ -16,7 +16,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestControllerAdvice //capture exceptions and return Rest response
+@RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
 
@@ -76,7 +76,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(AccessDeniedException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
-    public ResponseError handleAccessDeniedException(AccessDeniedException e){
+    public ResponseError handleAccessDeniedException(AccessDeniedException e) {
         return new ResponseError(HttpStatus.FORBIDDEN.value(), "Access Denied", List.of());
     }
 }

@@ -13,14 +13,13 @@ public class ClientService {
     private final ClientRepository repository;
     private final PasswordEncoder encoder;
 
-    public Client save(Client client){
+    public Client save(Client client) {
         String passwordEncode = encoder.encode(client.getClientSecret());
         client.setClientSecret(passwordEncode);
         return repository.save(client);
     }
 
-    public Client getByClientId(String clientId){
+    public Client getByClientId(String clientId) {
         return repository.findByClientId(clientId);
     }
-
 }

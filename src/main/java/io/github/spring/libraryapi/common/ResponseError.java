@@ -10,7 +10,7 @@ public record ResponseError(int status, String message, List<CustomFieldError> e
         return new ResponseError(HttpStatus.BAD_REQUEST.value(), message, List.of());
     }
 
-    public static ResponseError conflict(String message){
+    public static ResponseError conflict(String message) {
         return new ResponseError(HttpStatus.CONFLICT.value(), message, List.of());
     }
 }

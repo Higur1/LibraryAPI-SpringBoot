@@ -37,12 +37,9 @@ public class BookSpecification {
     }
 
     public static Specification<Book> authorNameLike(String name) {
-        //join
         return (root, query, cb) -> {
-            //manual join
             Join<Object, Object> authorJoin = root.join("author", JoinType.LEFT);
             return cb.like(cb.upper(authorJoin.get("name")), "%" + name.toUpperCase() + "%");
-            // return cb.like(cb.upper(root.get("author").get("name")), "%"+name.toUpperCase()+"%"); //automatic join
         };
     }
 }

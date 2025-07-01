@@ -44,11 +44,6 @@ public class AuthorController extends GenericController {
     public ResponseEntity<Void> save(@RequestBody @Valid AuthorRequestDTO dto) {
         log.info("Registering new author: {} by: {}", dto.name(), userService.getCurrentUserName());
 
-        /*UserDetails userLogged = (UserDetails) authentication.getPrincipal();
-        AuthUser authUser = authUserService.getByLogin(userLogged.getUsername());
-        Author author = mapper.toEntity(dto);
-        author.setUser_id(authUser.getId());*/
-
         Author author = mapper.toEntity(dto);
 
         service.save(author);
@@ -69,21 +64,7 @@ public class AuthorController extends GenericController {
             AuthorResponseDTO authorResponseDTO = mapper.toResponseAuthorDTO(author);
             return ResponseEntity.ok(authorResponseDTO);
         }).orElseGet(() -> ResponseEntity.notFound().build());
-
-        //old way
-       /* var uuidAuthor = UUID.fromString(id);
-
-        Optional<Author> resultAuthor = service.authorDetailById(uuidAuthor);
-
-        if (resultAuthor.isPresent()) {
-            Author author = resultAuthor.get();
-            ResponseAuthorDTO responseAuthorDTO = mapper.toResponseAuthorDTO(author);
-            return ResponseEntity.ok(responseAuthorDTO);
-        }
-
-        return ResponseEntity.notFound().build();*/
     }
-
 
     @DeleteMapping("{id}")
     @PreAuthorize("hasRole('MANAGER')")
@@ -101,16 +82,6 @@ public class AuthorController extends GenericController {
             return ResponseEntity.noContent().build();
         }).orElseGet(() -> ResponseEntity.notFound().build());
 
-            /*UUID uuid = UUID.fromString(id);
-            Optional<Author> resultAuthor = service.authorDetailById(uuidAuthor);
-
-            if (resultAuthor.isEmpty()) {
-                return ResponseEntity.notFound().build();
-            }
-
-            service.delete(resultAuthor.get());
-
-            return ResponseEntity.noContent().build();*/
     }
 
     @GetMapping()
@@ -146,21 +117,5 @@ public class AuthorController extends GenericController {
 
             return ResponseEntity.noContent().build();
         }).orElseGet(() -> ResponseEntity.notFound().build());
-
-            /*var uuidAuthor = UUID.fromString(id);
-
-            Optional<Author> resultAuthor = service.authorDetailById(uuidAuthor);
-
-            if (resultAuthor.isEmpty()) {
-                return ResponseEntity.notFound().build();
-            }
-
-            var author = resultAuthor.get();
-            author.setName(requestAuthorDTO.name());
-            author.setNationality(requestAuthorDTO.nationality());
-            author.setBirthDate(requestAuthorDTO.birthDate());
-            service.update(author);
-
-            return ResponseEntity.noContent().build();*/
     }
 }

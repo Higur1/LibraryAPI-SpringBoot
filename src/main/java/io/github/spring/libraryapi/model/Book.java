@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 
-
 @Table(name = "book")
 @Getter
 @Setter
@@ -52,14 +51,13 @@ public class Book {
     private LocalDateTime updateDate;
 
     @ManyToOne
-    @JoinColumn (name = "user_id")
+    @JoinColumn(name = "user_id")
     private AuthUser authUser;
 
-    //constraint
+
     @ManyToOne(
-            fetch = FetchType.LAZY//default FetchType.EAGER
+            fetch = FetchType.LAZY
     )
-    //(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
     private Author author;
 }

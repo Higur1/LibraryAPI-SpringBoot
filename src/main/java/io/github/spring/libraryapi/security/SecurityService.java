@@ -5,7 +5,6 @@ import io.github.spring.libraryapi.service.AuthUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,7 +16,7 @@ public class SecurityService {
     public AuthUser getUserLogged() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if(authentication instanceof CustomAuthentication customAuthentication){
+        if (authentication instanceof CustomAuthentication customAuthentication) {
             return customAuthentication.getAuthUser();
         }
 

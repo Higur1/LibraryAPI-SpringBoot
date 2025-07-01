@@ -20,10 +20,12 @@ import java.util.UUID;
 public interface BookRepository extends JpaRepository<Book, UUID>, JpaSpecificationExecutor<Book> {
 
     List<Book> findByAuthor(Author author);
+
     List<Book> findByTitle(String title);
+
     Optional<Book> findByIsbn(String isbn);
 
-    //JPQL -> references to entity's - use properties of entity's
+
     @Query("SELECT book from Book as book ORDER BY book.title, book.price")
     List<Book> listAllOrderByTitleAndPrice();
 
@@ -43,12 +45,11 @@ public interface BookRepository extends JpaRepository<Book, UUID>, JpaSpecificat
     List<String> listOfGenreBrazilianAuthors();
 
     @Query("SELECT book from Book book WHERE book.genre = :genre order by :price")
-    List<Book> findByGenre(@Param("genre") Genre genre, @Param("price") BigDecimal price); //maybe need to convert BigDecimal TO
+    List<Book> findByGenre(@Param("genre") Genre genre, @Param("price") BigDecimal price);
 
     @Query("SELECT book from Book book WHERE book.genre = ?1 order by ?2")
-    List<Book> findByGenrePositionalParam(Genre genre, BigDecimal price); //maybe need to convert BigDecimal TO
+    List<Book> findByGenrePositionalParam(Genre genre, BigDecimal price);
 
-    //need to write operation
     @Modifying
     @Transactional
     @Query("DELETE from Book WHERE genre = ?1")
@@ -56,10 +57,8 @@ public interface BookRepository extends JpaRepository<Book, UUID>, JpaSpecificat
 
     @Modifying
     @Transactional
-    @Query("UPDATE Book SET releaseDate = ?1") //need where
-    void updateReleaseDate(LocalDate newReleaseDate);
+    @Query("UPDATE Book SET releaseDate = ?1 WHERE id = ?2")
+    void updateReleaseDate(LocalDate newReleaseDate, UUID uuid);
 
     boolean existsByAuthor(Author author);
-
-
 }

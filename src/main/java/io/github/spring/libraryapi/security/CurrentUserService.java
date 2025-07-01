@@ -7,8 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class CurrentUserService {
 
-    private CurrentUserService(){}
-    public String getCurrentUserName(){
+    private CurrentUserService() {
+    }
+
+    public String getCurrentUserName() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return (authentication != null) ? authentication.getName() : null;
     }

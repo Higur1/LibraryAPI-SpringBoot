@@ -49,11 +49,6 @@ public class BookService {
             Integer page,
             Integer pageSize
     ) {
-        /*Specification<Book> specification = Specification
-                .where(BookSpecification.isbnEqual(isbn))
-                .and(BookSpecification.titleLike(title))
-                .and(BookSpecification.genreEqual(genre));*/
-
         Specification<Book> specification = Specification
                 .where((root, query, criteriaBuilder)
                         -> criteriaBuilder.conjunction());

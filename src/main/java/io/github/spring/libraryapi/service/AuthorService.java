@@ -24,13 +24,6 @@ public class AuthorService {
     private final BookRepository bookRepository;
     private final SecurityService securityService;
 
-    //@RequiredArgsConstructor
-    /*public AuthorService(AuthorRepository repository,  AuthorValidator validator, BookRepository bookRepository){
-        this.repository = repository;
-        this.validator = validator;
-        this.bookRepository = bookRepository;
-    }*/
-
     public void save(Author author) {
         validator.validate(author);
 
@@ -50,7 +43,6 @@ public class AuthorService {
         repository.delete(author);
     }
 
-    //use searchWithExamples is better
     public List<Author> search(String name, String nationality) {
         if (name != null && nationality != null) {
             return repository.findByNameAndNationality(name, nationality);
@@ -65,7 +57,6 @@ public class AuthorService {
         return repository.findAll();
     }
 
-    //same search to filter but using Example
     public List<Author> searchWithExample(String name, String nationality) {
 
         var author = new Author();
