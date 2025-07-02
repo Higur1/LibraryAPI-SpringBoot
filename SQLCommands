@@ -1,3 +1,12 @@
+
+CREATE TABLE auth_user(
+    id uuid NOT NULL PRIMARY KEY,
+    login VARCHAR(20) NOT NULL UNIQUE,
+    password VARCHAR(300) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    roles VARCHAR[]
+);
+
 CREATE TABLE author(
 	id uuid NOT NULL PRIMARY KEY,
 	name VARCHAR(100) NOT NULL,
@@ -5,8 +14,7 @@ CREATE TABLE author(
 	nationality VARCHAR(50) NOT NULL,
 	register_date timestamp,
 	update_date timestamp,
-	user_id uuid
-
+	user_id uuid NOT NULL REFERENCES auth_user(id)
 );
 
 CREATE TABLE book(
@@ -18,19 +26,12 @@ CREATE TABLE book(
 	price NUMERIC(18,2),
 	register_date timestamp,
     update_date timestamp,
-    user_id uuid,
+    user_id uuid NOT NULL REFERENCES auth_user(id),
 	author_id uuid NOT NULL REFERENCES author(id),
 
 	CONSTRAINT chk_genre CHECK(genre IN ('FICTION', 'FANTASY', 'MYSTERY', 'ROMANCE', 'BIOGRAPHY', 'SCIENCE'))
 );
 
-CREATE TABLE auth_user(
-    id uuid NOT NULL PRIMARY KEY,
-    login VARCHAR(20) NOT NULL UNIQUE,
-    password VARCHAR(300) NOT NULL,
-    email VARCHAR(150) NOT NULL,
-    roles VARCHAR[]
-);
 
 CREATE TABLE client(
     id uuid NOT NULL PRIMARY KEY,
@@ -39,3 +40,8 @@ CREATE TABLE client(
     redirect_uri VARCHAR(200) NOT NULL,
     scope VARCHAR(50)
 );
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+INSERT INTO auth_user (id, login, password, email, roles) VALUES (uuid_generate_v4(), 'manager', '$2a$12$6HSGJYlRJIuC8lrwKoFcyuBomGJxRNG.ulgrHiyBdyYJxcGVGvIb6', 'manager@email.com', '{MANAGER}');
+
+INSERT INTO client (id, client_id, client_secret, redirect_uri, scope) VALUES (uuid_generate_v4(), 'my-client', '$2a$12$8fld0cAc5cQ1yTYPuf1c8OnYVIsx82pWAu765qI1qLZxCgVtPz4fa','http://localhost:8080/authorized', 'MANAGER');
