@@ -6,8 +6,8 @@ import io.github.spring.libraryapi.model.Client;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public abstract class ClientMapper {
-    public abstract Client toEntity(ClientRequestDTO clientRequestDTO);
+public interface ClientMapper {
+    Client toEntity(ClientRequestDTO clientRequestDTO);
 
-    public abstract ClientResponseDTO toResponseClientDTO(Client client);
+    ClientResponseDTO toResponseClientDTO(Client client);
 }
