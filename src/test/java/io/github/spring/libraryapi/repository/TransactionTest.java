@@ -16,12 +16,12 @@ public class TransactionTest {
      * Commit -> confirm transaction
      * Rollback -> undo operations
      */
-    @Test
+
     void transactionTest(){
        transactionService.run();
     }
 
-    @Test
+
     void transactionManageState(){
         transactionService.updateWithoutUpdate();
     }

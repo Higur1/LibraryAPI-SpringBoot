@@ -3,9 +3,14 @@ package io.github.spring.libraryapi.repository;
 import io.github.spring.libraryapi.model.Author;
 import io.github.spring.libraryapi.model.Book;
 import io.github.spring.libraryapi.model.Genre;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -14,7 +19,13 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@Transactional
+@ActiveProfiles("test")
+@Sql(scripts = "/test-setup.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 public class AuthorRepositoryTest {
     @Autowired
     AuthorRepository authorRepository;
@@ -22,50 +33,53 @@ public class AuthorRepositoryTest {
     @Autowired
     BookRepository bookRepository;
 
+    private UUID ancientAuthorId;
+
+    @BeforeEach
+    void setup(){
+        Author ancientAuthor  = new Author();
+        ancientAuthor.setId(UUID.randomUUID());
+        ancientAuthor.setName("Ancient Author");
+        ancientAuthor.setNationality("Brazilian");
+        ancientAuthor.setBirthDate(LocalDate.of(1905,1,1));
+        Author ancientAuthorSave = authorRepository.save(ancientAuthor);
+        ancientAuthorId = ancientAuthorSave.getId();
+    }
+
     @Test
     public void saveTest(){
-        Author author = new Author();
+        Author author = authorRepository.findById(ancientAuthorId).get();
 
-        author.setName("Higor");
-        author.setNationality("Brazilian");
-        author.setBirthDate(LocalDate.of(1999,1,1));
-
-        Author saveAuthor = authorRepository.save(author);
-
-        System.out.println("Author: "+saveAuthor);
+        assertNotNull(author);
+        assertEquals("Ancient Author", author.getName());
     }
-    @Test
-    public void updateTest(){
-        var id = UUID.fromString("c073af6e-407c-43ad-8565-bbfccb456d48");
-        Optional<Author> author = authorRepository.findById(id);
 
-        if(author.isPresent()){
-            //change
-            Author foundAuthor = author.get();
-            foundAuthor.setBirthDate(LocalDate.of(1800, 11, 13));
-
-            var updateAuthor = authorRepository.save(foundAuthor);
-            System.out.println("Updated: "+updateAuthor);
-        }
-    }
     @Test
     public void listAuthorsTest(){
         List<Author> listAuthors = authorRepository.findAll();
-        listAuthors.forEach(System.out::println);
+
+        assertFalse(listAuthors.isEmpty());
     }
 
     @Test
-    public void countAuthorsTest(){
-        System.out.printf("Database has %s authors", authorRepository.count());
+    public void updateTest(){
+        Optional<Author> author = authorRepository.findById(ancientAuthorId);
+        author.get().setName("New Author");
+        Author saveAuthor = authorRepository.save(author.get());
+
+        assertNotNull(saveAuthor);
+        assertEquals("New Author", saveAuthor.getName());
     }
 
     @Test
     public void deleteTest(){
-        var id = UUID.fromString("c073af6e-407c-43ad-8565-bbfccb456d48");
-        Optional<Author> author = authorRepository.findById(id);
+        authorRepository.deleteById(ancientAuthorId);
 
-        author.ifPresent(value -> authorRepository.deleteById(value.getId()));
+        Optional<Author> byId = authorRepository.findById(ancientAuthorId);
+
+        assertFalse(byId.isPresent());
     }
+
     @Test
     public void saveWithBooksTest(){
         Author author = new Author();
@@ -84,17 +98,13 @@ public class AuthorRepositoryTest {
         author.setBooks(new ArrayList<>());
         author.getBooks().add(book);
 
-        authorRepository.save(author);
-        bookRepository.saveAll(author.getBooks());
-    }
+        Author authorSave = authorRepository.save(author);
+        List<Book> booksSave = bookRepository.saveAll(author.getBooks());
 
-    @Test
-    void listBooksByAuthor(){
-        UUID uuid = UUID.fromString("2f5e6112-dbc9-46ee-9975-2bc7ce1c95c8");
-        Author author = authorRepository.findById(uuid).get();
+        assertNotNull(authorSave);
+        assertFalse(booksSave.isEmpty());
 
-        List<Book> byAuthor = bookRepository.findByAuthor(author);
-
-        byAuthor.forEach(System.out::println);
+        assertEquals("Pedro", authorSave.getName());
+        assertTrue(booksSave.contains(book));
     }
 }

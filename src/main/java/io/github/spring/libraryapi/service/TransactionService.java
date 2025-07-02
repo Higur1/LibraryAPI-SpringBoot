@@ -45,9 +45,5 @@ public class TransactionService {
         book.setReleaseDate(LocalDate.of(1980, 1, 2));
 
         bookRepository.saveAndFlush(book);
-
-        if (author.getName().equals("Jon")) {
-            throw new RuntimeException("Rollback");
-        }
     }
 }
