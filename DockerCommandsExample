@@ -1,14 +1,33 @@
-# dockerCommands.example
-
-docker run --name pgadmin4 \
-  -p 15432:80 \
-  -e PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL} \
-  -e PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD} \
+# PGAdmin
+docker run --name pgadmin4 -p 15432:80 \
+  -e PGADMIN_DEFAULT_EMAIL=$PGADMIN_DEFAULT_EMAIL \
+  -e PGADMIN_DEFAULT_PASSWORD=$PGADMIN_DEFAULT_PASSWORD \
+  --network library-network \
   dpage/pgadmin4:8.3
 
-docker run --name librarydb \
-  -p 5432:5432 \
-  -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \
-  -e POSTGRES_USER=${POSTGRES_USER} \
-  -e POSTGRES_DB=${POSTGRES_DB} \
+# Postgres - Development
+docker run --name librarydb-dev \
+  -e POSTGRES_USER=$DEV_DB_USER \
+  -e POSTGRES_PASSWORD=$DEV_DB_PASSWORD \
+  -e POSTGRES_DB=$DEV_DB_NAME \
+  -p 5432:5432 -d \
+  --network library-network \
+  postgres:16.3
+
+# Postgres - Production
+docker run --name librarydb-prod \
+  -e POSTGRES_USER=$PROD_DB_USER \
+  -e POSTGRES_PASSWORD=$PROD_DB_PASSWORD \
+  -e POSTGRES_DB=$PROD_DB_NAME \
+  -p 5433:5432 -d \
+  --network library-network \
+  postgres:16.3
+
+# Postgres - Test
+docker run --name librarydb-test \
+  -e POSTGRES_USER=$TEST_DB_USER \
+  -e POSTGRES_PASSWORD=$TEST_DB_PASSWORD \
+  -e POSTGRES_DB=$TEST_DB_NAME \
+  -p 5431:5432 -d \
+  --network library-network \
   postgres:16.3
