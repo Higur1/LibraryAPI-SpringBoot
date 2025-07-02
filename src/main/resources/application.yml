@@ -1,13 +1,21 @@
 spring:
   application:
     name: libraryapi
+  profiles:
+    active: development
+  output:
+    ansi:
+      enabled: ALWAYS
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: ${DB_DEVELOPMENT_URL}
+    username: ${DB_DEVELOPMENT_USERNAME}
+    password: ${DB_DEVELOPMENT_PASSWORD}
     driver-class-name: org.postgresql.Driver
+    hikari:
+      idle-timeout: 300000
+      max-lifetime: 1800000
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: update #none and create-drop
     properties:
@@ -17,9 +25,8 @@ spring:
       client:
         registration:
           google:
-            client-id: ${OAUTH2_ID}
-            client-secret: ${OAUTH2_SECRET}
-
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_SECRET}
 springdoc:
   override-with-generic-response: false
 
@@ -29,7 +36,7 @@ logging:
   file:
     name: app.log
   level:
-    root: warn
+    root: warn #trace, debug, info, warn, error
     io:
       github:
         spring:
@@ -40,19 +47,44 @@ logging:
         web: debug
 
 management:
+  #server:
+    #port: 9090
   endpoints:
     web:
       exposure:
         include: '*'
+
 ---
 spring:
   config:
     activate:
       on-profile: test
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: ${DB_TEST_URL}
+    username: ${DB_TEST_USERNAME}
+    password: ${DB_TEST_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
+      idle-timeout: 300000
+      max-lifetime: 1800000
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+        hibernate:
+          format_sql: true
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+  datasource:
+    url: ${DB_PRODUCTION_URL}
+    username: ${DB_PRODUCTION_USERNAME}
+    password: ${DB_PRODUCTION_PASSWORD}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 5
